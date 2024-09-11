@@ -1,0 +1,60 @@
+.openinterx-ai {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  &__left {
+    width: 60px;
+    height: 100%;
+    padding: 24px 0px;
+    border-right: 1px solid var(--grey-color-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo-icon {
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    .menu-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      & > a {
+        padding: 6px;
+        line-height: 0;
+        .menu-icon {
+          font-size: 26px;
+        }
+      }
+      & > a.active {
+        border-radius: 8px;
+        background: var(--brand-color-1);
+
+        .menu-icon {
+          color: var(--text-color-0);
+        }
+      }
+    }
+
+    .user-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .theme-icon {
+        cursor: pointer;
+        font-size: 34px;
+        margin-bottom: 20px;
+      }
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        object-fit: cover;
+      }
+    }
+  }
+}

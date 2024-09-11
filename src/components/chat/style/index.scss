@@ -1,0 +1,103 @@
+.chat-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 14px 16px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--grey-color-1);
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--grey-color-1);
+
+    .selected-video {
+      position: relative;
+      &__count {
+        cursor: pointer;
+
+        .text {
+          color: var(--text-color-1);
+          font-size: 14px;
+          font-weight: 400;
+          vertical-align: top;
+        }
+      }
+
+      &__list {
+        width: 20vw;
+        border-radius: 8px;
+        background: #232429;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3), 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+        padding: 8px;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        &.show {
+          opacity: 1;
+        }
+
+        &__item {
+          display: flex;
+          gap: 8px;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          .cover {
+            width: 72px;
+            min-height: 40px;
+            border-radius: 4px;
+            flex: none;
+          }
+
+          .name {
+            color: #f9f9f9;
+            font-size: 12px;
+            font-weight: 400;
+            word-break: break-all;
+          }
+        }
+      }
+    }
+
+    .chat-title > .ant-input {
+      color: var(--text-color-0);
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .chat-icon {
+      cursor: pointer;
+    }
+  }
+  .chat-content {
+    flex: 1;
+    padding: 12px 0;
+  }
+  .chat-footer {
+    .chat-input {
+      color: var(--text-color-1);
+      caret-color: #988cff;
+      height: 48px;
+      border-radius: 8px;
+      background: var(--bg-color-1);
+      border: none;
+
+      input::placeholder {
+        color: var(--text-color-3);
+      }
+
+      .attachment-icon,
+      .send-icon {
+        cursor: pointer;
+      }
+
+      .send-icon {
+        color: var(--bg-color-4);
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+.my-video {
+  width: 100%;
+  display: flex;
+  padding: 32px 20px 20px 20px;
+
+  & > div {
+    flex: 1;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    &__search {
+      padding-right: 20px;
+      .input-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .search-input {
+          width: 68%;
+        }
+        .ant-input-group-addon {
+          background-color: transparent;
+        }
+      }
+      .filter-wrapper {
+        margin-top: 16px;
+
+        :where(.css-dev-only-do-not-override-vn1oyg).ant-tag-checkable {
+          background-color: #f9f9f9;
+          border-color: transparent;
+        }
+
+        :where(.css-dev-only-do-not-override-vn1oyg).ant-tag-checkable-checked {
+          color: #201f26;
+          background-color: #c7c7ce;
+        }
+      }
+      .sort-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 16px;
+        .sort {
+          color: rgba(32, 31, 38, 0.8);
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    &__content {
+      flex: 1;
+      margin-top: 12px;
+      padding-right: 13px;
+      margin-right: 7px;
+
+      .os-scrollbar-vertical .os-scrollbar-handle {
+        height: 24%;
+      }
+
+      .list-item {
+        margin-bottom: 14px;
+
+        .video-cover {
+          height: 128px;
+          border-radius: 8px;
+          margin-bottom: 4px;
+        }
+        .video-name,
+        .video-date {
+          color: #201f26;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        .video-date {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &__chat {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px 16px 16px;
+    border-radius: 8px;
+    border: 1px solid #e7e7ea;
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .video-count {
+        display: flex;
+        align-items: center;
+
+        span {
+          color: rgba(32, 31, 38, 0.8);
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+
+      .chat-title {
+        color: #201f26;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .chat-icon {
+        cursor: pointer;
+      }
+    }
+    .chat-content {
+      flex: 1;
+    }
+    .chat-footer {
+      .chat-input {
+        height: 48px;
+        border-radius: 99px;
+        background: rgba(231, 231, 234, 0.4);
+        .ant-input-suffix {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

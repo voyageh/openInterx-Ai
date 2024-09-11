@@ -1,0 +1,102 @@
+$opacities: 1, 0.8, 0.6, 0.35;
+$grey-color: #f9f9f9, #e7e7ea, #c7c7ce, #a9a8b1, #8c8b95, #6f6e78, #5a5864, #45444f, #32313b, #201f26;
+$brand-color: #f9f9ff, #e9e8ff, #d3d1ff, #bfbaff, #aba3ff, #988cff, #7f72db, #675ab8, #504494, #3b3070;
+
+$themes: (
+  light: (
+    'bg': (
+      #ffffff,
+      #eef1f8,
+      #ffffff,
+      #ffffff,
+      #000000,
+    ),
+    'text': #201f26,
+    'grey': (
+      #f9f9f9,
+      #e7e7ea,
+      #c7c7ce,
+      #a9a8b1,
+      #8c8b95,
+      #6f6e78,
+      #5a5864,
+      #45444f,
+      #32313b,
+      #201f26,
+    ),
+    'brand': (
+      #f9f9ff,
+      #e9e8ff,
+      #d3d1ff,
+      #bfbaff,
+      #aba3ff,
+      #988cff,
+      #7f72db,
+      #675ab8,
+      #504494,
+      #3b3070,
+    ),
+  ),
+  dark: (
+    'bg': (
+      #16161a,
+      #232429,
+      #35363c,
+      #43444a,
+      #4f5159,
+    ),
+    'text': #f9f9f9,
+    'grey': (
+      #201f26,
+      #32313b,
+      #45444f,
+      #5a5864,
+      #6f6e78,
+      #8c8b95,
+      #a9a8b1,
+      #c7c7ce,
+      #e7e7ea,
+      #f9f9f9,
+    ),
+    'brand': (
+      #3b3070,
+      #504494,
+      #675ab8,
+      #7f72db,
+      #988cff,
+      #aba3ff,
+      #bfbaff,
+      #d3d1ff,
+      #e9e8ff,
+      #f9f9ff,
+    ),
+  ),
+);
+
+@mixin generate-variables($name) {
+  $theme-values: map-get($themes, $name);
+
+  @each $key, $value in $theme-values {
+    @if type-of($value) == 'list' {
+      $i: 0;
+      @each $color in $value {
+        --#{$key}-color-#{$i}: #{$color};
+        $i: $i + 1;
+      }
+    } @else {
+      @each $o in $opacities {
+        $i: index($opacities, $o)-1;
+        $rgba-color: rgba($value, $o);
+        --#{$key}-color-#{$i}: #{$rgba-color};
+      }
+    }
+  }
+}
+
+:root {
+  @include generate-variables('light');
+}
+
+[data-theme='dark'] {
+  @include generate-variables('dark');
+}
