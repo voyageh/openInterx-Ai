@@ -27,7 +27,7 @@ export default function VideoList({ playVieo }) {
         ))}
       </div>
       <div className="video-list__sort">
-        <Checkbox className='all-box'>All Videos 28 total</Checkbox>
+        <Checkbox className="all-box">All Videos 28 total</Checkbox>
         <div>
           <Button className="sort-btn" icon={<ArrowDownOutlined />} iconPosition="end" type="text">
             Upload Date
@@ -44,7 +44,7 @@ export default function VideoList({ playVieo }) {
           {Array.from({
             length: 17,
           }).map((_, i) => (
-            <Col span={8} key={i}>
+            <Col xs={{ span: 24 }} sm={{ span: 12 }} lg={{ span: 8 }} xxl={{ span: 6 }} key={i}>
               <div className="list-item" onClick={() => playVieo()} draggable onDragStart={onDragStart}>
                 <div className="video-cover" style={{ background: 'url(1.png) lightgray 50% / cover no-repeat' }}>
                   <div className="video-cover__mask text">04:59</div>

@@ -3,6 +3,7 @@ import Root from '@/pages/root'
 import ErrorPage from '@/pages/error-page'
 import MyVideo, { loader } from '@/pages/my-video'
 import SampleVideo from '@/pages/sample-video'
+import Login from '@/pages/login'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         element: <SampleVideo />,
       },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
   },
 ])
 
