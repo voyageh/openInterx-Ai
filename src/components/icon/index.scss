@@ -1,5 +1,5 @@
 .icon-wrapper {
-  font-size: 20px;
+  font-size: var(--font-size-5);
   color: var(--text-color-0);
   display: inline-flex;
   align-items: center;
@@ -9,4 +9,5 @@
   text-transform: none;
   text-rendering: optimizeLegibility;
   line-height: 0;
+  vertical-align: middle;
 }

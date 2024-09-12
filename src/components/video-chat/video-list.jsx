@@ -40,11 +40,11 @@ export default function VideoList({ playVieo }) {
         options={{ overflow: { x: 'hidden' }, scrollbars: { autoHide: 'leave', autoHideDelay: 200 } }}
         className="video-list__content"
       >
-        <Row gutter={16}>
+        <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
           {Array.from({
             length: 17,
           }).map((_, i) => (
-            <Col xs={{ span: 24 }} sm={{ span: 12 }} lg={{ span: 8 }} xxl={{ span: 6 }} key={i}>
+            <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 12 }} xl={{ span: 8 }} key={i}>
               <div className="list-item" onClick={() => playVieo()} draggable onDragStart={onDragStart}>
                 <div className="video-cover" style={{ background: 'url(1.png) lightgray 50% / cover no-repeat' }}>
                   <div className="video-cover__mask text">04:59</div>

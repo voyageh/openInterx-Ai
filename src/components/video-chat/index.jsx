@@ -6,6 +6,8 @@ import Icon from '@/components/icon'
 import ChatWindow from '@/components/chat'
 import Upload from '@/components/upload'
 import VideoModal from '@/components/video-player/modal'
+import { Resizable } from 're-resizable'
+import { useUserStore } from '@/store/user'
 
 import './style/index.scss'
 
@@ -52,6 +54,12 @@ export default function MyVideo() {
     videoRef.current.open('https://www.youtube.com/watch?v=jNgP6d9HraI')
   }
 
+  const { width, changeWidth } = useUserStore()
+
+  const onResizeStop = (_e, _direction, ref, _d) => {
+    changeWidth(ref.style.width)
+  }
+
   return (
     <div className="video-wrapper">
       <div className="video-wrapper__list">
@@ -81,9 +89,16 @@ export default function MyVideo() {
         <div className="video-wrapper__list__content">{flag ? <SearchList playVieo={playVieo} /> : <VideoList playVieo={playVieo} />}</div>
         <VideoModal ref={videoRef} />
       </div>
-      <div className="video-wrapper__chat">
+      <Resizable
+        className="video-wrapper__chat"
+        handleClasses={{ left: 'resize-box' }}
+        defaultSize={{ width }}
+        minWidth={480}
+        enable={{ top: false, right: false, bottom: false, left: true, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false }}
+        onResizeStop={onResizeStop}
+      >
         <ChatWindow />
-      </div>
+      </Resizable>
     </div>
   )
 }

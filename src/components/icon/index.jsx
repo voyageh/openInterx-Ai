@@ -12,6 +12,7 @@ import NewChatIcon from '@/assets/images/chat/new-chat.svg'
 import SendIcon from '@/assets/images/chat/send.svg'
 import DownloadIcon from '@/assets/images/download.svg'
 import Attachment from '@/assets/images/attachment.svg'
+import UrlIcon from '@/assets/images/upload/url.svg'
 import './index.scss'
 
 export const Icon = ({ name, className, ...props }) => {
@@ -29,6 +30,7 @@ export const Icon = ({ name, className, ...props }) => {
     Attachment,
     light: DarkIcon,
     dark: LightIcon,
+    UrlIcon,
   }
   const Icon = icons[name]
   return (

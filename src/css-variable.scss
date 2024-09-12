@@ -4,15 +4,30 @@ $brand-color: #f9f9ff, #e9e8ff, #d3d1ff, #bfbaff, #aba3ff, #988cff, #7f72db, #67
 
 $themes: (
   light: (
-    'bg': (
+    'bg-color': (
       #ffffff,
       #eef1f8,
       #ffffff,
       #ffffff,
       #000000,
     ),
-    'text': #201f26,
-    'grey': (
+    'text-color': #201f26,
+    'font-size': (
+      '12px',
+      '14px',
+      '16px',
+      '18px',
+      '20px',
+      '22px',
+      '24px',
+      '26px',
+      '28px',
+      '30px',
+      '32px',
+      '34px',
+      '36px',
+    ),
+    'grey-color': (
       #f9f9f9,
       #e7e7ea,
       #c7c7ce,
@@ -24,7 +39,7 @@ $themes: (
       #32313b,
       #201f26,
     ),
-    'brand': (
+    'brand-color': (
       #f9f9ff,
       #e9e8ff,
       #d3d1ff,
@@ -38,15 +53,23 @@ $themes: (
     ),
   ),
   dark: (
-    'bg': (
+    'bg-color': (
       #16161a,
       #232429,
       #35363c,
       #43444a,
       #4f5159,
     ),
-    'text': #f9f9f9,
-    'grey': (
+    'text-color': #f9f9f9,
+    'font-size': (
+      '16px',
+      '14px',
+      '13px',
+      '12px',
+      '11px',
+      '10px',
+    ),
+    'grey-color': (
       #201f26,
       #32313b,
       #45444f,
@@ -58,7 +81,7 @@ $themes: (
       #e7e7ea,
       #f9f9f9,
     ),
-    'brand': (
+    'brand-color': (
       #3b3070,
       #504494,
       #675ab8,
@@ -80,14 +103,14 @@ $themes: (
     @if type-of($value) == 'list' {
       $i: 0;
       @each $color in $value {
-        --#{$key}-color-#{$i}: #{$color};
+        --#{$key}-#{$i}: #{$color};
         $i: $i + 1;
       }
     } @else {
       @each $o in $opacities {
         $i: index($opacities, $o)-1;
         $rgba-color: rgba($value, $o);
-        --#{$key}-color-#{$i}: #{$rgba-color};
+        --#{$key}-#{$i}: #{$rgba-color};
       }
     }
   }

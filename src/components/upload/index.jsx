@@ -1,6 +1,6 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 import { Modal, Tabs, Upload, Button, Input } from 'antd'
-import urlIcon from '@/assets/images/url.svg'
+import Icon from '@/components/icon'
 import './index.scss'
 
 const { Dragger } = Upload
@@ -26,15 +26,17 @@ export default forwardRef(function Upload(_, ref) {
 
   return (
     <Modal
-      classNames={{ header: 'upload-modal-header', body: 'upload-modal-body', footer: 'upload-modal-footer' }}
+      classNames={{ content: 'upload-modal-content' }}
       width={780}
       title="Upload Video"
       centered
       open={open}
       onCancel={() => setOpen(false)}
       footer={[
-        <Button key="back">Cancel</Button>,
-        <Button key="submit" className="upload-btn">
+        <Button key="back" type="text" className="cancel-btn">
+          Cancel
+        </Button>,
+        <Button key="submit" type="text" className="upload-btn">
           Upload
         </Button>,
       ]}
@@ -57,7 +59,7 @@ export default forwardRef(function Upload(_, ref) {
           </Dragger>
         ) : (
           <div>
-            <Input placeholder="Paste your url link here" prefix={<img src={urlIcon} />} />
+            <Input className="url-input" size='large' placeholder="Paste your url link here" prefix={<Icon name="UrlIcon" />} />
             <span className="upload-tips">If there was an error downloading the video, please try again. Each analysis time varies from 1-10s</span>
           </div>
         )}

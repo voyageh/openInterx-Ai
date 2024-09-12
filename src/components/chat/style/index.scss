@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     border-bottom: 1px solid var(--grey-color-1);
 
     .selected-video {
@@ -20,7 +20,7 @@
 
         .text {
           color: var(--text-color-1);
-          font-size: 14px;
+          font-size: var(--font-size-3);
           font-weight: 400;
           vertical-align: top;
         }
@@ -66,7 +66,7 @@
 
     .chat-title > .ant-input {
       color: var(--text-color-0);
-      font-size: 16px;
+      font-size: var(--font-size-3);
       font-weight: 400;
     }
     .chat-icon {
@@ -80,8 +80,10 @@
   .chat-footer {
     .chat-input {
       color: var(--text-color-1);
-      caret-color: #988cff;
-      height: 48px;
+      font-size: var(--font-size-2);
+      caret-color: var(--brand-color-4);
+      height: 60px;
+      padding: 4px 11px;
       border-radius: 8px;
       background: var(--bg-color-1);
       border: none;
