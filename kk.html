@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽勾选图片</title>
+    <style>
+        /* 图片容器样式 */
+        .image-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 单个图片样式 */
+        .image-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 勾选框样式 */
+        .checkbox {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* 目标区域样式 */
+        .drop-target {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed #999;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 自定义拖拽样式 */
+        .drag-image {
+            position: relative;
+            display: inline-block;
+            width: 60px; /* 宽度设定足够显示层叠效果 */
+            height: 60px;
+        }
+
+        /* 图片层叠样式，随着index增加偏移 */
+        .drag-image img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #333;
+            background-color: white;
+        }
+
+        /* 数字显示样式 */
+        .image-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <!-- 图片项 -->
+        <div class="image-item" draggable="true">
+            <input type="checkbox" class="checkbox">
+            <img src="https://via.placeholder.com/100" alt="Image 1">
+        </div>
+        <div class="image-item" draggable="true">
+            <input type="checkbox" class="checkbox">
+            <img src="https://via.placeholder.com/100" alt="Image 2">
+        </div>
+        <div class="image-item" draggable="true">
+            <input type="checkbox" class="checkbox">
+            <img src="https://via.placeholder.com/100" alt="Image 3">
+        </div>
+        <div class="image-item" draggable="true">
+            <input type="checkbox" class="checkbox">
+            <img src="https://via.placeholder.com/100" alt="Image 4">
+        </div>
+        <div class="image-item" draggable="true">
+            <input type="checkbox" class="checkbox">
+            <img src="https://via.placeholder.com/100" alt="Image 5">
+        </div>
+    </div>
+
+    <div class="drop-target">拖拽到这里</div>
+
+    <script>
+        // 获取图片项
+        const imageItems = document.querySelectorAll('.image-item');
+        const dropTarget = document.querySelector('.drop-target');
+
+        let selectedImages = [];
+
+        imageItems.forEach(item => {
+            // 当拖拽开始时触发
+            item.addEventListener('dragstart', (e) => {
+                selectedImages = [];
+                // 检查每个图片项是否被勾选
+                imageItems.forEach(imgItem => {
+                    const checkbox = imgItem.querySelector('.checkbox');
+                    if (checkbox.checked) {
+                        selectedImages.push(imgItem.querySelector('img').src);
+                    }
+                });
+
+                // 自定义拖拽的预览
+                const dragPreview = document.createElement('div');
+                dragPreview.classList.add('drag-image');
+
+                // 动态层叠显示每一张图片
+                selectedImages.forEach((src, index) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.style.top = `${index * 10}px`; // 每个图片垂直偏移，形成层叠
+                    img.style.left = `${index * 10}px`; // 每个图片水平偏移，形成层叠
+                    dragPreview.appendChild(img);
+                });
+
+                // 如果选中图片数量大于1，显示数量提示
+                if (selectedImages.length > 1) {
+                    const countBadge = document.createElement('div');
+                    countBadge.classList.add('image-count');
+                    countBadge.textContent = selectedImages.length;
+                    dragPreview.appendChild(countBadge);
+                }
+
+                document.body.appendChild(dragPreview);
+                e.dataTransfer.setDragImage(dragPreview, 0, 0);
+
+                // 防止拖拽结束后预览图片仍然留在DOM中
+                setTimeout(() => {
+                    document.body.removeChild(dragPreview);
+                }, 0);
+            });
+        });
+
+        // 拖拽进入目标区域
+        dropTarget.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        // 拖拽放置时触发
+        dropTarget.addEventListener('drop', (e) => {
+            e.preventDefault();
+            selectedImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                dropTarget.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
