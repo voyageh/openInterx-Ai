@@ -20,6 +20,7 @@
     "react-player": "^2.16.0",
     "react-router-dom": "^6.26.2",
     "screenfull": "^6.0.2",
+    "swiper": "^11.1.14",
     "zustand": "^4.5.5"
   },
   "devDependencies": {

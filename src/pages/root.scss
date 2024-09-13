@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
+
   &__left {
     width: 60px;
     height: 100%;
@@ -62,5 +62,9 @@
         object-fit: cover;
       }
     }
+  }
+  &__right {
+    flex: 1;
+    overflow: hidden;
   }
 }

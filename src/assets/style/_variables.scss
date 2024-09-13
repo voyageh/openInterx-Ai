@@ -1,0 +1,36 @@
+// 定义断点数据
+$breakpoints: (
+  'mobile': (
+    'min-width': 576px,
+    'font-size': 12px,
+  ),
+  'tablet': (
+    'min-width': 768px,
+    'font-size': 12px,
+  ),
+  'tablet-large': (
+    'min-width': 992px,
+    'font-size': 12px,
+  ),
+  'desktop': (
+    'min-width': 1200px,
+    'font-size': 14px,
+  ),
+  'desktop-large': (
+    'min-width': 1440px,
+    'font-size': 16px,
+  ),
+  'desktop-xlarge': (
+    'min-width': 1600px,
+    'font-size': 18px,
+  ),
+);
+
+// 遍历断点并生成对应的 CSS
+@each $breakpoint, $properties in $breakpoints {
+  @media (min-width: map-get($properties, 'min-width')) {
+    html {
+      font-size: map-get($properties, 'font-size'); //ignore
+    }
+  }
+}

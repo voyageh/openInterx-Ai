@@ -2,7 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 import { Tag, Checkbox, Button, Row, Col } from 'antd'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import Icon from '@/components/icon'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules'
 
+import 'swiper/css'
 import './style/video-list.scss'
 
 const tagsData = [
@@ -19,8 +22,6 @@ const tagsData = [
   'Badminton6',
   'Badminton7',
 ]
-
-let scrollPosition = 0
 
 export default function VideoList({ playVieo }) {
   const [selectedTag, setSelectedTags] = useState('All')
@@ -45,61 +46,34 @@ export default function VideoList({ playVieo }) {
     setCheckedList(e.target.checked ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [])
   }
 
-  const tagRef = useRef(null)
-  const [leftVisible, setLeftVisible] = useState(false)
-  const [rightVisible, setRightVisible] = useState(false)
-  const [translateX, setTranslateX] = useState(0)
-
-  useEffect(() => {
-    const containerWidth = tagRef.current.clientWidth
-    const contentWidth = tagRef.current.scrollWidth
-    const maxScroll = contentWidth - containerWidth
-    setLeftVisible(translateX <= 0 ? false : true)
-    setRightVisible(translateX >= maxScroll ? false : true)
-  }, [translateX])
-
-  const handlePrev = () => {
-    setTranslateX((prev) => {
-      const _translateX = Math.max(prev - tagRef.current.clientWidth / 5, 0)
-      tagRef.current.style.transform = `translateX(-${_translateX}px)`
-      return _translateX
-    })
-  }
-  const handleNext = () => {
-    setTranslateX((prev) => {
-      const containerWidth = tagRef.current.clientWidth
-      const contentWidth = tagRef.current.scrollWidth
-      const maxScroll = contentWidth - containerWidth
-      const setp = containerWidth / 5
-      const _translateX = Math.min(prev + setp, maxScroll)
-      tagRef.current.style.transform = `translateX(-${_translateX}px)`
-      return _translateX
-    })
-  }
-
   return (
     <div className="video-list-wrapper">
       <div className="video-list-wrapper__filter">
-        {leftVisible && (
-          <div className="icon-left" onClick={handlePrev}>
-            <Icon name="LeftIcon" />
-          </div>
-        )}
-
-        <div className="tag-wrapper">
-          <div ref={tagRef} className="tag-content">
-            {tagsData.map((tag) => (
-              <Tag.CheckableTag key={tag} checked={tag === selectedTag} onChange={(checked) => handleChange(tag, checked)}>
+        <Swiper
+          slidesPerView="auto"
+          freeMode={true}
+          spaceBetween={10}
+          navigation={{
+            prevEl: '.icon-left',
+            nextEl: '.icon-right',
+            disabledClass: 'hide',
+          }}
+          modules={[Navigation]}
+        >
+          {tagsData.map((tag) => (
+            <SwiperSlide key={tag} style={{ width: 'auto' }}>
+              <Tag.CheckableTag checked={tag === selectedTag} onChange={(checked) => handleChange(tag, checked)}>
                 {tag}
               </Tag.CheckableTag>
-            ))}
+            </SwiperSlide>
+          ))}
+          <div className="icon-left">
+            <Icon name="LeftIcon" />
           </div>
-        </div>
-        {rightVisible && (
           <div className="icon-right">
-            <Icon name="RightIcon" onClick={handleNext} />
+            <Icon name="RightIcon" />
           </div>
-        )}
+        </Swiper>
       </div>
       <div className="video-list-wrapper__sort">
         <Checkbox className="checkbox-video" indeterminate={indeterminate} onChange={onSelectAll}>

@@ -37,7 +37,9 @@ export default function Root() {
           </Tooltip>
         </div>
       </div>
-      <Outlet />
+      <div className="openinterx-ai__right">
+        <Outlet />
+      </div>
     </div>
   )
 }
