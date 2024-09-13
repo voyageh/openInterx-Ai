@@ -5,6 +5,7 @@
 
   &__list {
     flex: 1;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 
@@ -80,6 +81,9 @@
           box-shadow: none;
           border-color: inherit;
         }
+      }
+      .upload-btn {
+        color: var(--text-color-1);
       }
     }
 

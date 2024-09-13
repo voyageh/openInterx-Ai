@@ -38,7 +38,7 @@ export default function ChatWindow() {
       <div className="chat-header">
         <div className="selected-video">
           <div className="selected-video__count" onClick={() => setShow(!show)}>
-            <span className="text">{selecteds.length} videos</span> <Icon name="DownArrowIcon" />
+            <span className="text">{selecteds.length} videos</span> <Icon name="DownIcon" />
           </div>
           <div className={`selected-video__list ${show ? 'show' : ''}`}>
             {selecteds.map((item, index) => (

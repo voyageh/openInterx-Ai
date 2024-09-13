@@ -10,6 +10,7 @@ import { Resizable } from 're-resizable'
 import { useUserStore } from '@/store/user'
 
 import './style/index.scss'
+import { Tooltip } from 'antd'
 
 const { Option } = Select
 const VideoList = lazy(() => import('./video-list'))
@@ -83,7 +84,9 @@ export default function MyVideo() {
               </Select>
             )}
           </div>
-          <Button icon={<Icon name="AddVideo" />} type="text" onClick={() => uploadRef.current.open()} />
+          <Tooltip title="upload">
+            <Button className='upload-btn' icon={<Icon name="AddVideo" />} type="text" onClick={() => uploadRef.current.open()} />
+          </Tooltip>
           <Upload ref={uploadRef} />
         </div>
         <div className="video-wrapper__list__content">{flag ? <SearchList playVieo={playVieo} /> : <VideoList playVieo={playVieo} />}</div>

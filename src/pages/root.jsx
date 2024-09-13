@@ -1,4 +1,5 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Tooltip } from 'antd'
 import Icon from '@/components/icon'
 import { useUserStore } from '@/store/user'
 
@@ -16,16 +17,24 @@ export default function Root() {
           <Icon name="Logo" className="logo-icon" />
         </div>
         <div className="menu-wrapper">
-          <NavLink to="/my-video" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Icon name="MyVideo" className="menu-icon" />
-          </NavLink>
-          <NavLink to="/sample-video" className={({ isActive }) => (isActive || location.pathname === '/' ? 'active' : '')}>
-            <Icon name="SampleVideo" className="menu-icon" />
-          </NavLink>
+          <Tooltip title="My video" placement="right">
+            <NavLink to="/my-video" className={({ isActive }) => (isActive ? 'active' : '')}>
+              <Icon name="MyVideo" className="menu-icon" />
+            </NavLink>
+          </Tooltip>
+          <Tooltip title="Sample video" placement="right">
+            <NavLink to="/sample-video" className={({ isActive }) => (isActive || location.pathname === '/' ? 'active' : '')}>
+              <Icon name="SampleVideo" className="menu-icon" />
+            </NavLink>
+          </Tooltip>
         </div>
         <div className="user-avatar">
-          <Icon name={theme} className="theme-icon" onClick={changeTheme} />
-          <img src={user.avatar} alt="avatar" />
+          <Tooltip title="Theme switch" placement="right">
+            <Icon name={theme} className="theme-icon" onClick={changeTheme} />
+          </Tooltip>
+          <Tooltip title="User settings" placement="right">
+            <img src={user.avatar} alt="avatar" />
+          </Tooltip>
         </div>
       </div>
       <Outlet />

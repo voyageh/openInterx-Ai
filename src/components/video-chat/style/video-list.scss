@@ -1,12 +1,65 @@
-.video-list {
+.video-list-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  .checkbox-video {
+    color: var(--text-color-1);
+    --ant-color-primary-hover: var(--brand-color-6);
+    --ant-color-primary: var(--brand-color-6);
+    --ant-color-bg-container: transparent;
+    --ant-color-white: var(--bg-color-0);
+  }
 
   &__filter {
     margin-top: 14px;
-    padding-right: 20px;
+    margin-right: 20px;
+    display: flex;
+    position: relative;
+
+    .icon-left {
+      color: var(--text-color-1);
+      cursor: pointer;
+      display: flex;
+      position: absolute;
+      left: 0;
+      z-index: 99;
+      background-color: var(--bg-color-0);
+
+      &::after {
+        content: '';
+        width: 10px;
+        height: 100%;
+        pointer-events: none;
+      }
+    }
+
+    .icon-right {
+      color: var(--text-color-1);
+      cursor: pointer;
+      display: flex;
+      position: absolute;
+      right: 0;
+      background-color: var(--bg-color-0);
+
+      &::before {
+        content: '';
+        width: 10px;
+        height: 100%;
+        pointer-events: none;
+      }
+    }
+
+    .tag-wrapper {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      .tag-content {
+        transition: transform 0.3s ease-in-out;
+      }
+    }
 
     .ant-tag-checkable {
       color: var(--text-color-1);
@@ -31,17 +84,14 @@
     margin-top: 6px;
     padding-right: 12px;
 
-    .all-box {
-      color: var(--text-color-1);
-      .ant-checkbox-inner {
-        background-color: transparent;
-      }
-    }
-
     .sort-btn {
       color: var(--text-color-1);
       font-size: 14px;
       font-weight: 400;
+      .icon-wrapper {
+        font-size: 20px;
+      }
+
       &:hover {
         color: var(--text-color-1) !important;
       }
@@ -58,47 +108,101 @@
       background-color: var(--grey-color-4);
     }
 
-    .list-item {
-      margin-bottom: 14px;
+    .video-list {
+      margin-left: -6px;
+      margin-right: -6px;
 
-      .video-cover {
-        height: 144px;
-        border-radius: 8px;
-        margin-bottom: 4px;
-        position: relative;
+      .video-item {
+        margin-bottom: 14px;
+        padding-left: 6px;
+        padding-right: 6px;
 
-        &__mask {
-          padding: 2px 5px;
-          border-radius: 99px;
-          background: rgba(32, 31, 38, 0.35);
-          position: absolute;
-          right: 10px;
-          bottom: 7px;
+        &:hover {
+          .video-cover {
+            .cover-checkbox {
+              display: flex;
+            }
+          }
         }
-        &__mask.text {
-          color: #fff;
+
+        .video-cover {
+          height: 144px;
+          border-radius: 8px;
+          margin-bottom: 4px;
+          position: relative;
+
+          .cover-checkbox {
+            display: none;
+            --ant-color-bg-container: var(--bg-color-0);
+            position: absolute;
+            top: 3px;
+            left: 5px;
+          }
+
+          .ant-checkbox-wrapper-checked {
+            display: flex;
+          }
+
+          &__mask {
+            padding: 2px 5px;
+            border-radius: 99px;
+            background: rgba(32, 31, 38, 0.35);
+            position: absolute;
+            right: 10px;
+            bottom: 7px;
+          }
+          &__mask.text {
+            color: #fff;
+            font-size: var(--font-size-0);
+            font-weight: 500;
+          }
+        }
+
+        .video-name {
+          color: var(--text-color-0);
           font-size: var(--font-size-1);
+          word-break: break-all;
+          font-weight: 550;
+        }
+
+        .video-date {
+          color: var(--text-color-0);
+          font-size: var(--font-size-0);
           font-weight: 500;
+          margin-top: 4px;
+        }
+
+        .video-date {
+          font-weight: 400;
         }
       }
+    }
+  }
 
-      .video-name {
-        color: var(--text-color-0);
-        font-size: var(--font-size-2);
-        word-break: break-all;
-        font-weight: 550;
-      }
+  &__action {
+    display: flex;
+    gap: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 60px;
+    .btn {
+      --ant-button-default-hover-color: var(--text-color-0);
+      --ant-button-default-hover-border-color: transparent;
 
-      .video-date {
-        color: var(--text-color-0);
-        font-size: var(--font-size-1);
-        font-weight: 500;
-        margin-top: 4px;
-      }
+      padding: 20px 48px;
+      color: var(--text-color-0);
+      border: none;
+      border-radius: 99px;
+    }
 
-      .video-date {
-        font-weight: 400;
-      }
+    .start-btn {
+      --ant-button-default-hover-bg: var(--brand-color-5);
+      --ant-button-default-bg: var(--brand-color-3);
+    }
+    .del-btn {
+      --ant-button-default-hover-bg: var(--danger-color-1);
+      --ant-button-default-bg: var(--danger-color-0);
     }
   }
 }
