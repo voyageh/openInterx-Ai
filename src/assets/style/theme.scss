@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'ant-css-var';
 
 $opacities: 1, 0.8, 0.6, 0.35;
 $font-sizes: '12px', '14px', '16px', '18px', '20px', '22px', '24px', '26px', '28px', '30px', '32px', '34px', '36px';
@@ -80,15 +80,5 @@ $themes: (
   @include handleThemeVar($font-sizes, 'font-size');
   @include handleThemeVar($brand-color, 'brand-color', true);
   @include handleThemeVar($grey-color, 'grey-color', true);
-  --icon-hover-bg: var(--grey-color-4)
-}
-
-.ant-css-var {
-  --ant-font-size: var(--font-size-1);
-  --ant-color-bg-spotlight: var(--grey-color-8);
-  --ant-color-text-light-solid: var(--grey-color-0);
-}
-
-.ant-css-var.ant-btn {
-  --ant-button-text-hover-bg: var(--icon-hover-bg);
+  --icon-hover-bg: var(--grey-color-4);
 }

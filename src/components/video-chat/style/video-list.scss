@@ -79,15 +79,18 @@
 
   &__content {
     flex: 1;
+    overflow: hidden;
     margin-top: 12px;
     padding-right: 13px;
     margin-right: 7px;
+
     .os-scrollbar-vertical .os-scrollbar-handle {
-      height: 24%;
+      max-height: 150px;
+      min-height: 50px;
       background-color: var(--grey-color-4);
     }
 
-    .video-list {
+    .video-card {
       margin-left: -6px;
       margin-right: -6px;
 
@@ -155,6 +158,9 @@
           font-weight: 400;
         }
       }
+    }
+
+    .video-list {
     }
   }
 
