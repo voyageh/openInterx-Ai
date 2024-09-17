@@ -79,7 +79,6 @@
 
   &__content {
     flex: 1;
-    overflow: hidden;
     margin-top: 12px;
     padding-right: 13px;
     margin-right: 7px;
@@ -98,6 +97,21 @@
         margin-bottom: 14px;
         padding-left: 6px;
         padding-right: 6px;
+        .skeleton-cover {
+          --ant-skeleton-gradient-from-color: var(--bg-color-1);
+
+          width: 100%;
+          height: 144px;
+          span {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+          }
+        }
+        .skeleton-text {
+          --ant-skeleton-paragraph-li-height: 16px;
+          --ant-skeleton-gradient-from-color: var(--bg-color-1);
+        }
 
         &:hover {
           .video-cover {
@@ -110,12 +124,12 @@
         .video-cover {
           height: 144px;
           border-radius: 8px;
-          margin-bottom: 4px;
           position: relative;
+          background: lightgray center / cover no-repeat;
 
           .cover-checkbox {
-            display: none;
             --ant-color-bg-container: var(--bg-color-0);
+            display: none;
             position: absolute;
             top: 3px;
             left: 5px;
@@ -145,22 +159,19 @@
           font-size: var(--font-size-1);
           word-break: break-all;
           font-weight: 550;
+          margin: 6px 0;
         }
 
         .video-date {
           color: var(--text-color-0);
           font-size: var(--font-size-0);
           font-weight: 500;
-          margin-top: 4px;
         }
 
         .video-date {
           font-weight: 400;
         }
       }
-    }
-
-    .video-list {
     }
   }
 

@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { Tag, Checkbox, Button, Row, Col, Skeleton, Divider } from 'antd'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
-import OverlayScrollbarsComponent from '@/components/OverlayScrollbarsComponent'
 import Icon from '@/components/icon'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import List from '@/components/virtual-list'
+import { chunkArray } from '@/utils/array'
+import kk from '@/assets/images/kkk.svg?url'
 
 import 'swiper/css'
 import './style/video-list.scss'
@@ -39,7 +40,7 @@ export default function VideoList({ playVieo }) {
     const dragPreview = document.createElement('div')
     dragPreview.classList.add('drag-preview')
     const img = document.createElement('img')
-    img.src = 'kkk.svg'
+    img.src = kk
     dragPreview.appendChild(img)
     const span = document.createElement('span')
     span.classList.add('count')
@@ -73,10 +74,12 @@ export default function VideoList({ playVieo }) {
       return
     }
     setLoading(true)
-    fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
+    fetch('https://apifoxmock.com/m1/5110074-4772873-default/api/videos?page=1&pageSize=100')
       .then((res) => res.json())
       .then((body) => {
-        setData([...data, ...body.results])
+        const list = body.data.list
+        setData([...data, ...chunkArray(list, 3)])
+
         setLoading(false)
       })
       .catch(() => {
@@ -143,86 +146,29 @@ export default function VideoList({ playVieo }) {
           <Button className="sort-btn" icon={<Icon name={'ListIcon'} />} type="text" onClick={switchList} />
         </div>
       </div>
-      {/* <OverlayScrollbarsComponent
-        className="video-list-wrapper__content"
-        loader={
-          <Skeleton
-            avatar
-            paragraph={{
-              rows: 1,
-            }}
-            active
-          />
+      <List className="overlayscrollbars video-list-wrapper__content" total={data.length}>
+        {(index) =>
+          data[index].map((item, i) => (
+            <Col
+              key={i}
+              className="video-item"
+              xs={{ span: 24 }}
+              sm={{ span: 24 }}
+              lg={{ span: 12 }}
+              xl={{ span: 8 }}
+              draggable
+              onDragStart={onDragStart}
+            >
+              <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+                <div className="video-cover__mask text">{item.date}</div>
+                <Checkbox className="checkbox-video cover-checkbox" onChange={onSelectVideo} />
+              </div>
+              <div className="video-name ellipsis-2-lines">{item.name}</div>
+              <div className="video-date">Aug 12 2024</div>
+            </Col>
+          ))
         }
-      >
-        <Checkbox.Group value={checkedList} onChange={onSelectVideo}>
-          <Row className="video-card">
-            {Array.from({
-              length: 11,
-            }).map((_, i) => (
-              <Col
-                key={i}
-                className="video-item"
-                xs={{ span: 24 }}
-                sm={{ span: 24 }}
-                lg={{ span: 12 }}
-                xl={{ span: 8 }}
-                draggable
-                onDragStart={onDragStart}
-              >
-                <div className="video-cover" style={{ background: 'url(1.png) lightgray 50% / cover no-repeat' }}>
-                  <div className="video-cover__mask text">04:59</div>
-                  <Checkbox className="checkbox-video cover-checkbox" value={i} />
-                </div>
-                <div className="video-name ellipsis-2-lines">Video name Video name Video name Video name</div>
-                <div className="video-date">Aug 12 2024</div>
-              </Col>
-            ))}
-          </Row>
-        </Checkbox.Group>
-      </OverlayScrollbarsComponent> */}
-      <OverlayScrollbarsComponent contentId="scrollableDiv" className="video-list-wrapper__content">
-        <InfiniteScroll
-          dataLength={data.length}
-          next={loadMoreData}
-          hasMore={data.length < 50}
-          loader={
-            <Skeleton
-              avatar
-              paragraph={{
-                rows: 1,
-              }}
-              active
-            />
-          }
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-          scrollableTarget="scrollableDiv"
-        >
-          <Checkbox.Group value={checkedList} onChange={onSelectVideo}>
-            <Row className="video-card">
-              {data.map((_, i) => (
-                <Col
-                  key={i}
-                  className="video-item"
-                  xs={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  lg={{ span: 12 }}
-                  xl={{ span: 8 }}
-                  draggable
-                  onDragStart={onDragStart}
-                >
-                  <div className="video-cover" style={{ background: 'url(1.png) lightgray 50% / cover no-repeat' }}>
-                    <div className="video-cover__mask text">04:59</div>
-                    <Checkbox className="checkbox-video cover-checkbox" value={i} />
-                  </div>
-                  <div className="video-name ellipsis-2-lines">Video name Video name Video name Video name</div>
-                  <div className="video-date">Aug 12 2024</div>
-                </Col>
-              ))}
-            </Row>
-          </Checkbox.Group>
-        </InfiniteScroll>
-      </OverlayScrollbarsComponent>
+      </List>
       {checkedList.length > 0 && (
         <div className="video-list-wrapper__action">
           <Button className="btn start-btn">Start Conversation</Button>

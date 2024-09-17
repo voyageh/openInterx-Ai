@@ -50,7 +50,10 @@ html[data-theme='dark']::view-transition-old(root) {
 }
 
 .drag-preview {
-  position: relative;
+  position: absolute;
+  left: 9999px;
+  top: -9999px;
+  z-index: -999;
 
   img {
     width: 100px;
@@ -59,7 +62,7 @@ html[data-theme='dark']::view-transition-old(root) {
 
   .count {
     position: absolute;
-    top: -10px;
+    top: -7px;
     background-color: red;
     color: white;
     border-radius: 50%;
@@ -70,8 +73,4 @@ html[data-theme='dark']::view-transition-old(root) {
     align-items: center;
     font-size: 16px;
   }
-}
-
-.infinite-scroll-component {
-  overflow: hidden !important;
 }
