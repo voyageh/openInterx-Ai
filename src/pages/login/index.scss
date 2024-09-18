@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   background: radial-gradient(89.34% 106.22% at 50% 103.94%, #000 0%, rgba(0, 0, 0, 0) 100%),
-    url(@/assets/images/login/bg.jpg) center center / cover no-repeat;
+    url(@/assets/images/login/bg.jpg) center center / 100% 100% no-repeat;
 
   @keyframes pathRotate {
     0%,
@@ -30,11 +30,12 @@
     justify-content: center;
     align-items: center;
     gap: 64px;
-    border-radius: 8px;
     border: 1px solid rgba(190, 193, 251, 0.4);
+    border-radius: 8px;
     background: radial-gradient(106.32% 21.17% at 50% 0%, #100724 0%, rgba(0, 0, 0, 0) 100%),
       radial-gradient(144.76% 144.76% at 50% -15.73%, rgba(42, 12, 234, 0.04) 0%, rgba(0, 0, 0, 0.1) 100%);
     backdrop-filter: blur(18.350000381469727px);
+    position: relative;
 
     .logo-box {
       text-align: center;

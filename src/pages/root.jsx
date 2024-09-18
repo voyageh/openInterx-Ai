@@ -7,8 +7,7 @@ import './root.scss'
 
 export default function Root() {
   const location = useLocation()
-  const user = useUserStore((state) => state.user)
-  const { theme, changeTheme } = useUserStore()
+  const { user, theme, changeTheme } = useUserStore()  
 
   return (
     <div className="openinterx-ai">

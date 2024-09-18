@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
-import { Tag, Checkbox, Button, Row, Col, Skeleton, Divider } from 'antd'
+import { Tag, Checkbox, Button } from 'antd'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import Icon from '@/components/icon'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
-import List from '@/components/virtual-list'
-import { chunkArray } from '@/utils/array'
-import kk from '@/assets/images/kkk.svg?url'
+
+import List2 from './list'
 
 import 'swiper/css'
 import './style/video-list.scss'
@@ -36,24 +35,7 @@ export default function VideoList({ playVieo }) {
   const [checkedList, setCheckedList] = useState([]) //选中视频
   const indeterminate = checkedList.length > 0 && checkedList.length < 11
 
-  const onDragStart = (e) => {
-    const dragPreview = document.createElement('div')
-    dragPreview.classList.add('drag-preview')
-    const img = document.createElement('img')
-    img.src = kk
-    dragPreview.appendChild(img)
-    const span = document.createElement('span')
-    span.classList.add('count')
-    span.innerText = '1'
-    dragPreview.appendChild(span)
 
-    document.body.appendChild(dragPreview)
-    e.dataTransfer.setDragImage(dragPreview, 30, 30)
-
-    setTimeout(() => {
-      document.body.removeChild(dragPreview)
-    }, 0)
-  }
 
   const onSelectVideo = (v) => {
     setCheckedList(v)
@@ -67,45 +49,20 @@ export default function VideoList({ playVieo }) {
     console.log('switchList')
   }
 
-  const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+
   const loadMoreData = () => {
-    if (loading) {
-      return
-    }
-    setLoading(true)
     fetch('https://apifoxmock.com/m1/5110074-4772873-default/api/videos?page=1&pageSize=100')
       .then((res) => res.json())
       .then((body) => {
-        const list = body.data.list
-        setData([...data, ...chunkArray(list, 3)])
-
-        setLoading(false)
-      })
-      .catch(() => {
-        setLoading(false)
+        const v = [...data, ...body.data.list]
+        setData(v)
       })
   }
 
   useEffect(() => {
     loadMoreData()
   }, [])
-
-  const rootRef = useRef(null)
-  const [initialize] = useOverlayScrollbars({ defer: true })
-
-  useEffect(() => {
-    const { current: root } = rootRef
-
-    if (root) {
-      initialize({
-        target: root,
-        elements: {
-          viewport: root.firstElementChild,
-        },
-      })
-    }
-  }, [initialize])
 
   return (
     <div className="video-list-wrapper">
@@ -146,29 +103,7 @@ export default function VideoList({ playVieo }) {
           <Button className="sort-btn" icon={<Icon name={'ListIcon'} />} type="text" onClick={switchList} />
         </div>
       </div>
-      <List className="overlayscrollbars video-list-wrapper__content" total={data.length}>
-        {(index) =>
-          data[index].map((item, i) => (
-            <Col
-              key={i}
-              className="video-item"
-              xs={{ span: 24 }}
-              sm={{ span: 24 }}
-              lg={{ span: 12 }}
-              xl={{ span: 8 }}
-              draggable
-              onDragStart={onDragStart}
-            >
-              <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
-                <div className="video-cover__mask text">{item.date}</div>
-                <Checkbox className="checkbox-video cover-checkbox" onChange={onSelectVideo} />
-              </div>
-              <div className="video-name ellipsis-2-lines">{item.name}</div>
-              <div className="video-date">Aug 12 2024</div>
-            </Col>
-          ))
-        }
-      </List>
+      <List2 data={data} />
       {checkedList.length > 0 && (
         <div className="video-list-wrapper__action">
           <Button className="btn start-btn">Start Conversation</Button>

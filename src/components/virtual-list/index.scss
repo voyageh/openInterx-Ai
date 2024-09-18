@@ -1,0 +1,11 @@
+.virtual-list {
+  width: 100%;
+  height: 100%;
+  padding-right: 13px;
+
+  .os-scrollbar-vertical .os-scrollbar-handle {
+    max-height: 150px;
+    min-height: 30px;
+    background-color: var(--grey-color-4);
+  }
+}

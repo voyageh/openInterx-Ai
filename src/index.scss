@@ -56,13 +56,15 @@ html[data-theme='dark']::view-transition-old(root) {
   z-index: -999;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 240px;
+    height: 130px;
+    border-radius: 6px;
   }
 
   .count {
     position: absolute;
-    top: -7px;
+    top: -10px;
+    left: -5px;
     background-color: red;
     color: white;
     border-radius: 50%;
