@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { Checkbox } from 'antd'
 import { useResizeDetector } from 'react-resize-detector'
 import VirtualList from '@/components/virtual-list'
@@ -6,31 +6,17 @@ import { chunkArray } from '@/utils/array'
 
 const CheckboxGroup = Checkbox.Group
 
-/**
- * @enum {string}
- */
-const AgeType = {
-  CHILD: 'child',
-  TEEN: 'teen',
-  ADULT: 'adult',
-  SENIOR: 'senior',
-}
-
-/**
- * 视频列表
- *
- * @param {Object} props - The component props.
- * @param {Array} props.data - 数据
- * @param {"list" | "card"} props.type - 列表类型
- */
-export default function List(props) {
-  const { data = [], type = 'card' } = props
+const List = (props) => {
+  const { data = [], type = 'list' } = props
   const { width, ref } = useResizeDetector()
   const [list, setList] = useState([])
 
   useEffect(() => {
     let size = 3
     switch (true) {
+      case type === 'list':
+        size = 1
+        break
       case width < 576:
         size = 1 // XS
         break
@@ -54,7 +40,7 @@ export default function List(props) {
         break
     }
     setList(chunkArray(data, size))
-  }, [width, data, type])
+  }, [data, width, type])
 
   const onDragStart = (e) => {
     const dragPreview = document.createElement('div')
@@ -80,47 +66,54 @@ export default function List(props) {
     setCheckedList(v)
   }
 
-  const wrapper = ({ children }) => (
-    <CheckboxGroup value={checkedList} onChange={onSelectVideo}>
+  const wrapper = ({ style, children }) => (
+    <CheckboxGroup style={style} value={checkedList} onChange={onSelectVideo}>
       {children}
     </CheckboxGroup>
   )
 
-  const VideoCard = (index) =>
-    list[index].map((item, i) => (
-      <div key={i} className="video-item" draggable onDragStart={onDragStart}>
-        <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
-          <div className="video-cover__mask text">{item.date}</div>
-          <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
-        </div>
-        <div className="video-name ellipsis-2-lines">{item.name}</div>
-        <div className="video-date">Aug 12 2024</div>
-      </div>
-    ))
-
-  const videoList = {
-    Wrapper: wrapper,
-    Item: ({ index, measureElement, ...other }) => {
-      return (
-        <div ref={measureElement} {...other} className="video-card">
-          {list[index].map((item, i) => (
-            <div key={i} className="video-item" draggable onDragStart={onDragStart}>
-              <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
-                <div className="video-cover__mask text">{item.date}</div>
-                <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
-              </div>
-              <div className="video-name ellipsis-2-lines">{item.name}</div>
-              <div className="video-date">Aug 12 2024</div>
+  const VideoCard = ({ rowData, measureElement, ...other }) => {
+    return (
+      <div ref={measureElement} {...other} className="video-card">
+        {rowData.map((item, i) => (
+          <div key={i} className="video-item" draggable onDragStart={onDragStart}>
+            <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+              <div className="video-cover__mask text">{item.date}</div>
+              <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
             </div>
-          ))}
-        </div>
-      )
-    },
+            <div className="video-name ellipsis-2-lines">{item.name}</div>
+            <div className="video-date">Aug 12 2024</div>
+          </div>
+        ))}
+      </div>
+    )
   }
+
+  const VideoList = ({ rowData, measureElement, ...other }) => {
+    return (
+      <div ref={measureElement} {...other} className={`video-list ${type}`}>
+        {rowData.map((item, i) => (
+          <div key={i} className="video-item" draggable onDragStart={onDragStart}>
+            <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+              <div className="video-cover__mask text">{item.date}</div>
+              <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
+            </div>
+            <div className="video-name ellipsis-2-lines">{item.name}</div>
+            {type === 'list' && <div className="text">{item.date}</div>}
+            <div className="video-date">Aug 12 2024</div>
+          </div>
+        ))}
+      </div>
+    )
+  }  
 
   return (
     <div ref={ref} className="video-list-wrapper__content">
-      <VirtualList className="video-card" count={list.length} estimateSize={() => 200} components={videoList} />
+      <VirtualList data={list} estimateSize={200} wrapper={wrapper}>
+        {VideoList}
+      </VirtualList>
     </div>
   )
 }
+
+export default List

@@ -35,8 +35,6 @@ export default function VideoList({ playVieo }) {
   const [checkedList, setCheckedList] = useState([]) //选中视频
   const indeterminate = checkedList.length > 0 && checkedList.length < 11
 
-
-
   const onSelectVideo = (v) => {
     setCheckedList(v)
   }
@@ -45,8 +43,9 @@ export default function VideoList({ playVieo }) {
     setCheckedList(e.target.checked ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [])
   }
 
+  const [listType, setListType] = useState('')
   const switchList = () => {
-    console.log('switchList')
+    setListType(listType === '' ? 'list' : '')
   }
 
   const [data, setData] = useState([])
@@ -55,8 +54,7 @@ export default function VideoList({ playVieo }) {
     fetch('https://apifoxmock.com/m1/5110074-4772873-default/api/videos?page=1&pageSize=100')
       .then((res) => res.json())
       .then((body) => {
-        const v = [...data, ...body.data.list]
-        setData(v)
+        setData([...data, ...body.data.list])
       })
   }
 
@@ -100,10 +98,10 @@ export default function VideoList({ playVieo }) {
           <Button className="sort-btn" icon={<Icon name={'ArrowDown'} />} iconPosition="end" type="text">
             Upload Date
           </Button>
-          <Button className="sort-btn" icon={<Icon name={'ListIcon'} />} type="text" onClick={switchList} />
+          <Button className="sort-btn" icon={<Icon name={listType ? 'CardIcon' : 'ListIcon'} />} type="text" onClick={switchList} />
         </div>
       </div>
-      <List2 data={data} />
+      <List2 data={data} type={listType} />
       {checkedList.length > 0 && (
         <div className="video-list-wrapper__action">
           <Button className="btn start-btn">Start Conversation</Button>

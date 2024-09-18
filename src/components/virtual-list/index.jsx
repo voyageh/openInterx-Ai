@@ -1,21 +1,19 @@
-import { useEffect, useRef, Fragment, memo } from 'react'
+import { useEffect, useRef, createElement } from 'react'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
-
 import 'overlayscrollbars/overlayscrollbars.css'
 import './index.scss'
 
 /**
  * 虚拟列表
  *
- * @param {Object} props - The component props.
- * @param {number} props.count - The name to display.
- * @param {(index: number) => number} props.estimateSize - The age to display.
- * @param {React.ReactNode} props.wrapper - The age to display.
- * @param {React.ReactNode} props.children - The children to render for each item.
- * @returns {JSX.Element} The rendered component.
+ * @param {Object} props
+ * @param {number} props.count - 列表总数
+ * @param {number} props.estimateSize - 每一项的高度
+ * @param {React.ReactNode} props.wrapper - 所有listItem的父节点
+ * @param {React.ReactNode} props.children - ListItem
  */
-export default function VirtualList({ children, count, estimateSize, className, components }) {
+const VirtualList = ({ children, data = [], estimateSize, wrapper }) => {
   const rootRef = useRef(null)
   const viewportRef = useRef(null)
   const [initialize] = useOverlayScrollbars({
@@ -27,20 +25,10 @@ export default function VirtualList({ children, count, estimateSize, className, 
       },
     },
   })
-  const virtualizer = useVirtualizer({
-    count,
+  const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
+    count: data.length,
     getScrollElement: () => viewportRef.current,
-    estimateSize,
-  })
-  const List = components.List || Fragment
-  const ItemComponent = components.Item
-  const Items = memo((props) => {
-    const measureElement = virtualizer.measureElement
-    return (
-      <ItemComponent measureElement={measureElement} {...props}>
-        {children}
-      </ItemComponent>
-    )
+    estimateSize: () => estimateSize,
   })
 
   useEffect(() => {
@@ -57,19 +45,39 @@ export default function VirtualList({ children, count, estimateSize, className, 
     }
   }, [initialize])
 
+  const Wrapper = wrapper || 'div'
+
+  const ListItem = getVirtualItems().map((item) =>
+    createElement(children, {
+      key: item.key,
+      'data-index': item.index,
+      measureElement,
+      rowData: data[item.index],
+      style: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        transform: `translateY(${item.start}px)`,
+      },
+    })
+  )  
+
   return (
     <div data-overlayscrollbars-initialize="" ref={rootRef} className="virtual-list">
       <div ref={viewportRef}>
-        <div
+        <Wrapper
           style={{
-            height: `${virtualizer.getTotalSize()}px`,
+            height: `${getTotalSize()}px`,
             width: '100%',
             position: 'relative',
           }}
         >
-          <List>{virtualizer.getVirtualItems().map((virtualRow) => Items(virtualRow))}</List>
-        </div>
+          {ListItem}
+        </Wrapper>
       </div>
     </div>
   )
 }
+
+export default VirtualList

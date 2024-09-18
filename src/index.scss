@@ -38,6 +38,7 @@ html[data-theme='dark']::view-transition-old(root) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: var(--text-color-0);
 }
 
 //超出两行省略号

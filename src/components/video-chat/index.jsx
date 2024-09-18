@@ -59,7 +59,7 @@ export default function MyVideo() {
 
   const onResizeStop = (_e, _direction, ref, _d) => {
     changeWidth(ref.style.width)
-  }
+  }  
 
   return (
     <div className="video-wrapper">
