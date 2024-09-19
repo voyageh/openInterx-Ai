@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Input, Empty } from 'antd'
 import Icon from '@/components/icon'
 import ChatItem from './chat-item'
+import { useUniversalStore } from '@/store/universal'
 import './style/index.scss'
 
 const msg = [
@@ -21,9 +22,16 @@ const msg = [
 export default function ChatWindow() {
   const [show, setShow] = useState(false)
   const [selecteds, setSelecteds] = useState([])
+  const [drag, setDrag] = useUniversalStore((state) => [state.drag, state.setDrag])
 
+  const onDragLeave = (e) => {
+    e.preventDefault()
+    console.log('leave')
+    setDrag('start')
+  }
   const onDragOver = (e) => {
     e.preventDefault()
+    setDrag('enter')
   }
 
   const onDrop = (e) => {
@@ -31,10 +39,11 @@ export default function ChatWindow() {
     const data = e.dataTransfer.getData('application/json')
     const obj = JSON.parse(data)
     setSelecteds([...selecteds, {}])
+    setDrag('')
   }
 
   return (
-    <div className="chat-wrapper" onDrop={onDrop} onDragOver={onDragOver}>
+    <div className="chat-wrapper">
       <div className="chat-header">
         <div className="selected-video">
           <div className="selected-video__count" onClick={() => setShow(!show)}>
@@ -44,7 +53,7 @@ export default function ChatWindow() {
             {selecteds.map((item, index) => (
               <div className="selected-video__list__item" key={index}>
                 <div className="cover" style={{ background: 'url(2.png) lightgray 50% / cover no-repeat' }} />
-                <div className="name">Video name Video name Video name Video nameVideo name</div>
+                <div className="name ellipsis-2-lines">Video name Video name Video name Video nameVideo name</div>
               </div>
             ))}
             {selecteds.length === 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
@@ -69,6 +78,10 @@ export default function ChatWindow() {
           prefix={<Icon name="Attachment" className="attachment-icon" />}
           suffix={<Icon name="SendIcon" className="send-icon" />}
         />
+      </div>
+      <div className={`chat-drag ${drag}`} onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}>
+        <div className="drag-text">Drag the video here</div>
+        <div className="drag-tips">Please drag the video into this area. A new conversation will begin once the drag is complete</div>
       </div>
     </div>
   )

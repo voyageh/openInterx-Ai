@@ -27,7 +27,7 @@ export default forwardRef(function Upload(_, ref) {
   return (
     <Modal
       classNames={{ content: 'upload-modal-content' }}
-      width={780}
+      width={'42%'}
       title="Upload Video"
       centered
       open={open}

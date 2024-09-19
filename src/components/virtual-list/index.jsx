@@ -58,9 +58,6 @@ const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
     )
   })
 
-  console.log('virtual list')
-
-
   return (
     <div data-overlayscrollbars-initialize="" ref={rootRef} className="virtual-list">
       <div ref={viewportRef}>

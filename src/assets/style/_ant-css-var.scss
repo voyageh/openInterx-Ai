@@ -66,6 +66,8 @@
   --ant-color-text: var(--text-color-0);
   --ant-color-bg-spotlight: var(--grey-color-8);
   --ant-color-text-light-solid: var(--grey-color-0);
+  --ant-color-bg-elevated: var(--bg-color-1);
+  --ant-color-text-description: var(--text-color-1);
 }
 
 .ant-css-var.ant-input-css-var {
@@ -93,6 +95,8 @@
   --ant-select-multiple-item-height-sm: 16px;
   --ant-select-multiple-item-height-lg: 32px;
   --ant-select-show-arrow-padding-inline-end: 18px;
+  --ant-select-option-selected-bg: var(--grey-color-1);
+  --ant-select-option-selected-color: var(--text-color-1);
 }
 
 .ant-css-var.ant-btn {
@@ -112,4 +116,31 @@
   --ant-button-padding-block-sm: 0px;
   --ant-button-padding-block-lg: 7px;
   --ant-button-text-hover-bg: var(--icon-hover-bg);
+}
+
+.ant-css-var.ant-tabs-css-var {
+  --ant-tabs-card-height: 40px;
+  --ant-tabs-card-padding: 8px 16px;
+  --ant-tabs-card-padding-sm: 6px 16px;
+  --ant-tabs-card-padding-lg: 8px 16px 6px;
+  --ant-tabs-title-font-size: 14px;
+  --ant-tabs-title-font-size-lg: 16px;
+  --ant-tabs-title-font-size-sm: 14px;
+  --ant-tabs-horizontal-margin: 0 0 16px 0;
+  --ant-tabs-horizontal-item-gutter: 32px;
+  --ant-tabs-horizontal-item-padding: 12px 0;
+  --ant-tabs-horizontal-item-padding-sm: 8px 0;
+  --ant-tabs-horizontal-item-padding-lg: 16px 0;
+  --ant-tabs-vertical-item-padding: 8px 24px;
+  --ant-tabs-vertical-item-margin: 16px 0 0 0;
+  --ant-tabs-card-gutter: 2px;
+}
+
+.ant-css-var.ant-modal-css-var {
+  --ant-modal-title-font-size: 16px;
+  --ant-modal-content-padding: 20px 24px;
+  --ant-modal-header-margin-bottom: 8px;
+  --ant-modal-footer-margin-top: 12px;
+  --ant-modal-confirm-icon-margin-inline-end: 12px;
+  --ant-modal-confirm-btns-margin-top: 12px;
 }
