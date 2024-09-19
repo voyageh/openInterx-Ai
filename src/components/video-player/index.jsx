@@ -3,14 +3,7 @@ import ReactPlayer from 'react-player'
 import { Spin, Slider } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import screenfull from 'screenfull'
-import PlayIcon from '@/assets/images/player/play.svg?react'
-import PauseIcon from '@/assets/images/player/pause.svg?react'
-import DownloadIcon from '@/assets/images/download.svg?react'
-import SoundIcon from '@/assets/images/player/sound.svg?react'
-import MuteIcon from '@/assets/images/player/mute.svg?react'
-import FloatIcon from '@/assets/images/player/float.svg?react'
-import FullScreen from '@/assets/images/player/fullscreen.svg?react'
-import CloseFull from '@/assets/images/player/close-full.svg?react'
+import Icon from '@/components/icon'
 
 import './style/index.scss'
 
@@ -145,7 +138,7 @@ export default function VideoPlayer({ url }) {
         <div className="video-controls">
           <div className="video-controls__box">
             <div className="video-btn play" onClick={() => handlePlayPause()}>
-              {state.playing ? <PauseIcon /> : <PlayIcon />}
+              {state.playing ? <Icon name="PauseIcon" /> : <Icon name="PlayIcon" />}
             </div>
             <div className="video-time">
               {formatDuration(state.playedSeconds)}
@@ -153,20 +146,20 @@ export default function VideoPlayer({ url }) {
               {formatDuration(state.duration)}
             </div>
             <div className="video-btn">
-              <DownloadIcon />
+              <Icon name="DownloadIcon" />
             </div>
             <div className="video-btn" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-              <div onClick={handleToggleMuted}>{!state.muted ? <SoundIcon /> : <MuteIcon />}</div>
+              <div onClick={handleToggleMuted}>{!state.muted ? <Icon name="SoundIcon" /> : <Icon name="MuteIcon" />}</div>
               <div className={`volume-slider ${show ? 'show' : ''}`}>
                 <div className="volume-value">{Math.round(state.volume * 100)}</div>
                 <Slider vertical min={0} max={1} value={state.volume} step={0.01} tooltip={{ formatter: null }} onChange={handleVolumeChange} />
               </div>
             </div>
             <div className="video-btn" onClick={handlePIP}>
-              <FloatIcon />
+              <Icon name="FloatIcon" />
             </div>
             <div className="video-btn" onClick={handleFullscreen}>
-              {state.isFull ? <CloseFull /> : <FullScreen />}
+              {state.isFull ? <Icon name="CloseFull" /> : <Icon name="FullScreen" />}
             </div>
           </div>
         </div>

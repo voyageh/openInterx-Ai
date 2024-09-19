@@ -5,47 +5,76 @@ import MyVideo from '@/assets/images/root/my-video.svg'
 import SampleVideo from '@/assets/images/root/sample-video.svg'
 import LightIcon from '@/assets/images/root/light.svg'
 import DarkIcon from '@/assets/images/root/dark.svg'
-import SearchIcon from '@/assets/images/search.svg'
-import AddVideo from '@/assets/images/add-video.svg'
+// video icon
+import SearchIcon from '@/assets/images/video/search.svg'
+import AddVideo from '@/assets/images/video/add-video.svg'
+import DeleteIcon from '@/assets/images/video/delete.svg'
+import ArrowDown from '@/assets/images/video/arrow-down.svg'
+import ArrowUp from '@/assets/images/video/arrow-up.svg'
+import ListIcon from '@/assets/images/video/list.svg'
+import CardIcon from '@/assets/images/video/card.svg'
+import DownloadIcon from '@/assets/images/video/download.svg'
+import RightIcon from '@/assets/images/video/right.svg'
+import LeftIcon from '@/assets/images/video/left.svg'
+
+//player
+import PlayIcon from '@/assets/images/player/play.svg'
+import PauseIcon from '@/assets/images/player/pause.svg'
+import SoundIcon from '@/assets/images/player/sound.svg'
+import MuteIcon from '@/assets/images/player/mute.svg'
+import FloatIcon from '@/assets/images/player/float.svg'
+import FullScreen from '@/assets/images/player/fullscreen.svg'
+import CloseFull from '@/assets/images/player/close-full.svg'
+
+//chat
 import DownIcon from '@/assets/images/chat/down.svg'
 import UpIcon from '@/assets/images/chat/up.svg'
 import NewChatIcon from '@/assets/images/chat/new-chat.svg'
 import SendIcon from '@/assets/images/chat/send.svg'
-import DownloadIcon from '@/assets/images/download.svg'
 import Attachment from '@/assets/images/chat/attachment.svg'
 import UrlIcon from '@/assets/images/upload/url.svg'
-import ArrowDown from '@/assets/images/arrow-down.svg'
-import ArrowUp from '@/assets/images/arrow-up.svg'
-import ListIcon from '@/assets/images/list.svg'
-import CardIcon from '@/assets/images/card.svg'
-import RightIcon from '@/assets/images/right.svg'
-import LeftIcon from '@/assets/images/left.svg'
 
 import './index.scss'
 
+const icons = {
+  //root
+  Logo,
+  MyVideo,
+  SampleVideo,
+  light: DarkIcon,
+  dark: LightIcon,
+
+  //video
+  SearchIcon,
+  AddVideo,
+  DeleteIcon,
+  ArrowDown,
+  ArrowUp,
+  ListIcon,
+  CardIcon,
+  DownloadIcon,
+  RightIcon,
+  LeftIcon,
+
+  //player
+  PlayIcon,
+  PauseIcon,
+  SoundIcon,
+  MuteIcon,
+  FloatIcon,
+  FullScreen,
+  CloseFull,
+
+  //chat
+  DownIcon,
+  UpIcon,
+  NewChatIcon,
+  SendIcon,
+  Attachment,
+  UrlIcon,
+}
+
 export const Icon = forwardRef(({ name, className, ...props }, ref) => {
-  const icons = {
-    Logo,
-    DownIcon,
-    UpIcon,
-    NewChatIcon,
-    SendIcon,
-    DownloadIcon,
-    MyVideo,
-    SampleVideo,
-    SearchIcon,
-    AddVideo,
-    Attachment,
-    light: DarkIcon,
-    dark: LightIcon,
-    UrlIcon,
-    ArrowDown,
-    ArrowUp,
-    ListIcon,
-    CardIcon,
-    RightIcon,
-    LeftIcon,
-  }
   const Icon = icons[name]
   return (
     <span ref={ref} className={clsx('icon-wrapper', className)} {...props}>

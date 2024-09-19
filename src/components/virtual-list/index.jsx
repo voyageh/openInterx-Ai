@@ -1,19 +1,10 @@
-import { useEffect, useRef, createElement } from 'react'
+import { useEffect, useRef, Fragment, memo } from 'react'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import 'overlayscrollbars/overlayscrollbars.css'
 import './index.scss'
 
-/**
- * 虚拟列表
- *
- * @param {Object} props
- * @param {number} props.count - 列表总数
- * @param {number} props.estimateSize - 每一项的高度
- * @param {React.ReactNode} props.wrapper - 所有listItem的父节点
- * @param {React.ReactNode} props.children - ListItem
- */
-const VirtualList = ({ children, data = [], estimateSize, wrapper }) => {
+const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
   const rootRef = useRef(null)
   const viewportRef = useRef(null)
   const [initialize] = useOverlayScrollbars({
@@ -47,21 +38,28 @@ const VirtualList = ({ children, data = [], estimateSize, wrapper }) => {
 
   const Wrapper = wrapper || 'div'
 
-  const ListItem = getVirtualItems().map((item) =>
-    createElement(children, {
-      key: item.key,
-      'data-index': item.index,
-      measureElement,
-      rowData: data[item.index],
-      style: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        transform: `translateY(${item.start}px)`,
-      },
-    })
-  )  
+  const childrenContent = getVirtualItems().map((item) => {
+    if (!itemContent) return null
+    return (
+      <Fragment key={item.key}>
+        {itemContent({
+          'data-index': item.index,
+          measureElement,
+          rowData: data[item.index],
+          style: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            transform: `translateY(${item.start}px)`,
+          },
+        })}
+      </Fragment>
+    )
+  })
+
+  console.log('virtual list')
+
 
   return (
     <div data-overlayscrollbars-initialize="" ref={rootRef} className="virtual-list">
@@ -73,11 +71,11 @@ const VirtualList = ({ children, data = [], estimateSize, wrapper }) => {
             position: 'relative',
           }}
         >
-          {ListItem}
+          {childrenContent}
         </Wrapper>
       </div>
     </div>
   )
 }
 
-export default VirtualList
+export default memo(VirtualList)

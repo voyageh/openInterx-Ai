@@ -63,7 +63,9 @@
   --ant-box-shadow-tabs-overflow-right: inset -10px 0 8px -8px rgba(0, 0, 0, 0.08);
   --ant-box-shadow-tabs-overflow-top: inset 0 10px 8px -8px rgba(0, 0, 0, 0.08);
   --ant-box-shadow-tabs-overflow-bottom: inset 0 -10px 8px -8px rgba(0, 0, 0, 0.08);
-  --ant-color-text: var(--text-color-1);
+  --ant-color-text: var(--text-color-0);
+  --ant-color-bg-spotlight: var(--grey-color-8);
+  --ant-color-text-light-solid: var(--grey-color-0);
 }
 
 .ant-css-var.ant-input-css-var {

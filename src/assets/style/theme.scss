@@ -73,11 +73,12 @@ $themes: (
   @include handleThemeVar($brand-color, 'brand-color');
   @include handleThemeVar($grey-color, 'grey-color');
   --icon-hover-bg: rgba(0, 0, 0, 0.1);
+  --primary-color: #aba3ff;
+  --primay-hover-color: #bfbaff;
 }
 
 [data-theme='dark'] {
   @include handleTheme('dark');
-  @include handleThemeVar($font-sizes, 'font-size');
   @include handleThemeVar($brand-color, 'brand-color', true);
   @include handleThemeVar($grey-color, 'grey-color', true);
   --icon-hover-bg: var(--grey-color-4);

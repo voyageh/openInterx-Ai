@@ -63,16 +63,35 @@
     margin-top: 6px;
     padding-right: 12px;
 
-    .sort-btn {
+    .btn {
       color: var(--text-color-1);
-      font-size: 14px;
+      font-size: var(--font-size-1);
       font-weight: 400;
+
       .icon-wrapper {
         font-size: 20px;
       }
+    }
+
+    .sort-btn:hover {
+      background-color: transparent !important;
+    }
+
+    .change-btn {
+      border-radius: 50%;
+    }
+
+    .del-button {
+      color: var(--danger-color-0);
+      font-size: var(--font-size-1);
+
+      .icon-wrapper {
+        font-size: var(--font-size-3);
+      }
 
       &:hover {
-        color: var(--text-color-1) !important;
+        color: var(--danger-color-0) !important;
+        background-color: transparent !important;
       }
     }
   }
@@ -190,23 +209,21 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: 60px;
-    .btn {
-      --ant-button-default-hover-color: var(--text-color-0);
-      --ant-button-default-hover-border-color: transparent;
-
-      padding: 20px 48px;
-      color: var(--text-color-0);
-      border: none;
-      border-radius: 99px;
-    }
 
     .start-btn {
-      --ant-button-default-hover-bg: var(--brand-color-5);
-      --ant-button-default-bg: var(--brand-color-3);
-    }
-    .del-btn {
-      --ant-button-default-hover-bg: var(--danger-color-1);
-      --ant-button-default-bg: var(--danger-color-0);
+      color: var(--primary-color);
+      padding: 20px 48px;
+      background: linear-gradient(to right, var(--grey-color-1), var(--grey-color-1)), linear-gradient(to right, #5d62e7, #7227a0);
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      border: 2px solid transparent;
+      border-radius: 99px;
+
+      &:hover {
+        color: var(--primay-hover-color) !important;
+        border-color: #504494 !important;
+        background: linear-gradient(274deg, #6d00b0 -20.02%, #5a71ee 110.99%), linear-gradient(to right, #5d62e7, #7227a0) !important;
+      }
     }
   }
 }

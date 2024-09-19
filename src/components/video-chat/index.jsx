@@ -13,7 +13,7 @@ import './style/index.scss'
 import { Tooltip } from 'antd'
 
 const { Option } = Select
-const VideoList = lazy(() => import('./video-list'))
+const VideoList = lazy(() => import('./list'))
 const SearchList = lazy(() => import('./search-list'))
 export default function MyVideo() {
   const [searchParams, setSearchParams] = useSearchParams()
