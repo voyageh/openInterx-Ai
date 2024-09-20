@@ -1,4 +1,4 @@
-.video-list-wrapper {
+.video-list {
   width: 100%;
   height: 100%;
   display: flex;
@@ -11,6 +11,81 @@
     --ant-color-primary: var(--brand-color-6);
     --ant-color-bg-container: transparent;
     --ant-color-white: var(--bg-color-0);
+  }
+
+  &__search {
+    padding-right: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .search-input {
+      width: 68%;
+      display: flex;
+      border: 1px solid var(--grey-color-1);
+      border-radius: 99px;
+      overflow: hidden;
+
+      .ant-select-auto-complete {
+        flex: 1;
+      }
+
+      .ant-input-outlined {
+        color: var(--text-color-1);
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+
+        .search-icon {
+          color: var(--text-color-1);
+        }
+
+        input::placeholder {
+          color: var(--text-color-2);
+        }
+
+        &:hover {
+          border-color: inherit;
+        }
+        &:focus,
+        &:focus-within {
+          border-color: inherit;
+          box-shadow: none;
+        }
+      }
+
+      .ant-select {
+        .ant-select-clear {
+          color: var(--text-color-1);
+        }
+        &:hover .ant-select-clear {
+          color: var(--text-color-1);
+          background-color: transparent !important;
+        }
+      }
+
+      .ant-select-selector {
+        color: var(--text-color-1);
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        .ant-select-selection-item {
+          color: var(--text-color-1) !important;
+        }
+      }
+      .ant-select-arrow {
+        color: var(--text-color-1);
+      }
+
+      .ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+        border-color: inherit;
+      }
+      .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer)
+        .ant-select-selector {
+        box-shadow: none;
+        border-color: inherit;
+      }
+    }
   }
 
   &__filter {
@@ -102,7 +177,7 @@
     margin-top: 12px;
     margin-right: 7px;
 
-    .video-list {
+    .video-row {
       display: flex;
       gap: 10px;
 

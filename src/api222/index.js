@@ -1,14 +1,12 @@
 import { createAlova } from 'alova'
-import fetchAdapter from 'alova/fetch'
 import reactHook from 'alova/react'
-import { createApis, withConfigType } from './createApis'
+import adapterFetch from 'alova/fetch'
 import { message } from 'antd'
 
-export const alovaInstance = createAlova({
-  baseURL: '/api',
+export const alova = createAlova({
+  baseURL: 'https://apifoxmock.com/m1/5110074-4772873-default',
   statesHook: reactHook,
-  requestAdapter: fetchAdapter(),
-  beforeRequest: (method) => {},
+  requestAdapter: adapterFetch(),
   responded: {
     onSuccess: async (response) => {
       if (response.status >= 400) {
@@ -30,12 +28,3 @@ export const alovaInstance = createAlova({
     },
   },
 })
-
-export const $$userConfigMap = withConfigType({})
-
-/**
- * @type { Apis }
- */
-const Apis = createApis(alovaInstance, $$userConfigMap)
-
-export default Apis

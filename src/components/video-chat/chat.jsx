@@ -3,7 +3,7 @@ import { Button, Input, Empty } from 'antd'
 import Icon from '@/components/icon'
 import ChatItem from './chat-item'
 import { useUniversalStore } from '@/store/universal'
-import './style/index.scss'
+import './style/chat.scss'
 
 const msg = [
   {
@@ -26,10 +26,13 @@ export default function ChatWindow() {
 
   const onDragLeave = (e) => {
     e.preventDefault()
-    console.log('leave')
-    setDrag('start')
+    const dropZone = e.currentTarget // 获取放置区域
+    const relatedTarget = e.relatedTarget // 获取与事件相关的目标
+    if (!dropZone.contains(relatedTarget)) {
+      setDrag('start')
+    }
   }
-  const onDragOver = (e) => {
+  const onDragEnter = (e) => {
     e.preventDefault()
     setDrag('enter')
   }
@@ -39,7 +42,6 @@ export default function ChatWindow() {
     const data = e.dataTransfer.getData('application/json')
     const obj = JSON.parse(data)
     setSelecteds([...selecteds, {}])
-    setDrag('')
   }
 
   return (
@@ -79,7 +81,7 @@ export default function ChatWindow() {
           suffix={<Icon name="SendIcon" className="send-icon" />}
         />
       </div>
-      <div className={`chat-drag ${drag}`} onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}>
+      <div className={`chat-drag ${drag}`} onDrop={onDrop} onDragEnter={onDragEnter} onDragLeave={onDragLeave}>
         <div className="drag-text">Drag the video here</div>
         <div className="drag-tips">Please drag the video into this area. A new conversation will begin once the drag is complete</div>
       </div>

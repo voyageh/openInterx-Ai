@@ -5,6 +5,7 @@ import MyVideo from '@/assets/images/root/my-video.svg'
 import SampleVideo from '@/assets/images/root/sample-video.svg'
 import LightIcon from '@/assets/images/root/light.svg'
 import DarkIcon from '@/assets/images/root/dark.svg'
+
 // video icon
 import SearchIcon from '@/assets/images/video/search.svg'
 import AddVideo from '@/assets/images/video/add-video.svg'
@@ -16,6 +17,7 @@ import CardIcon from '@/assets/images/video/card.svg'
 import DownloadIcon from '@/assets/images/video/download.svg'
 import RightIcon from '@/assets/images/video/right.svg'
 import LeftIcon from '@/assets/images/video/left.svg'
+import CloseIcon from '@/assets/images/video/close.svg'
 
 //player
 import PlayIcon from '@/assets/images/player/play.svg'
@@ -55,6 +57,7 @@ const icons = {
   DownloadIcon,
   RightIcon,
   LeftIcon,
+  CloseIcon,
 
   //player
   PlayIcon,

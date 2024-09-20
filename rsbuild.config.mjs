@@ -4,6 +4,8 @@ import { pluginSass } from '@rsbuild/plugin-sass'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import pxtorem from 'postcss-pxtorem'
 
+const baseURL = process.env.BASE_URL
+
 export default defineConfig({
   plugins: [
     pluginReact(),
@@ -17,6 +19,14 @@ export default defineConfig({
   source: {
     alias: {
       '@': './src',
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: baseURL,
+        pathRewrite: { '^/api': '' },
+      },
     },
   },
   html: {
