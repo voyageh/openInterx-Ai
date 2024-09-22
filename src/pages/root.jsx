@@ -11,7 +11,7 @@ export default function Root() {
 
   return (
     <div className="openinterx-ai">
-      <div className="openinterx-ai__left">
+      <div className="openinterx-ai__left hidden-sm-and-down">
         <div className="logo">
           <Icon name="Logo" className="logo-icon" />
         </div>

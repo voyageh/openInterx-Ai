@@ -9,7 +9,13 @@ const baseURL = process.env.BASE_URL
 export default defineConfig({
   plugins: [
     pluginReact(),
-    pluginSass(),
+    pluginSass({
+      sassLoaderOptions:{
+        additionalData: `
+         @import '@/assets/style/mixins/mixins.scss';
+        `
+      }
+    }),
     pluginSvgr({
       svgrOptions: {
         exportType: 'default',

@@ -93,5 +93,4 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
     </div>
   )
 }
-
 export default memo(VirtualList)

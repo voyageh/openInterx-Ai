@@ -14,14 +14,13 @@ export default function MyVideo() {
 
   return (
     <div className="video-chat">
-      <div className="video-chat__list">
+      <div className="video-chat__list hidden-sm-and-down">
         <VideoList />
       </div>
       <Resizable
         className="video-chat__chat"
         handleClasses={{ left: 'resize-box' }}
         defaultSize={{ width }}
-        minWidth={480}
         enable={{ top: false, right: false, bottom: false, left: true, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false }}
         onResizeStop={onResizeStop}
       >

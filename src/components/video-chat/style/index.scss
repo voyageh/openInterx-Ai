@@ -93,7 +93,6 @@
 
   &__chat {
     position: relative;
-
     .resize-box {
       width: 2px !important;
       left: 0 !important;
@@ -102,6 +101,18 @@
         background-color: var(--brand-color-4);
       }
     }
+  }
+
+  @include break-point('sm-and-down') {
+    &__chat {
+      width: 100% !important;
+    }
+  }
+}
+
+@include break-point('sm-and-down') {
+  .video-chat {
+    padding: 10px;
   }
 }
 
