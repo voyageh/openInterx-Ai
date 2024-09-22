@@ -1,0 +1,173 @@
+.ant-css-var {
+  --ant-font-size: 14px;
+  --ant-line-width: 1px;
+  --ant-border-radius: 6px;
+  --ant-size-popup-arrow: 16px;
+  --ant-control-height: 32px;
+  --ant-font-size-sm: 12px;
+  --ant-font-size-lg: 16px;
+  --ant-font-size-xl: 20px;
+  --ant-font-size-heading-1: 38px;
+  --ant-font-size-heading-2: 30px;
+  --ant-font-size-heading-3: 24px;
+  --ant-font-size-heading-4: 20px;
+  --ant-font-size-heading-5: 16px;
+  --ant-font-height: 22px;
+  --ant-font-height-lg: 24px;
+  --ant-font-height-sm: 20px;
+  --ant-control-height-sm: 24px;
+  --ant-control-height-xs: 16px;
+  --ant-control-height-lg: 40px;
+  --ant-line-width-bold: 2px;
+  --ant-border-radius-xs: 2px;
+  --ant-border-radius-sm: 4px;
+  --ant-border-radius-lg: 8px;
+  --ant-border-radius-outer: 4px;
+  --ant-font-size-icon: 12px;
+  --ant-line-width-focus: 4px;
+  --ant-control-outline-width: 2px;
+  --ant-control-interactive-size: 16px;
+  --ant-control-padding-horizontal: 12px;
+  --ant-control-padding-horizontal-sm: 8px;
+  --ant-padding-xxs: 4px;
+  --ant-padding-xs: 8px;
+  --ant-padding-sm: 12px;
+  --ant-padding: 16px;
+  --ant-padding-md: 20px;
+  --ant-padding-lg: 24px;
+  --ant-padding-xl: 32px;
+  --ant-padding-content-horizontal-lg: 24px;
+  --ant-padding-content-vertical-lg: 16px;
+  --ant-padding-content-horizontal: 16px;
+  --ant-padding-content-vertical: 12px;
+  --ant-padding-content-horizontal-sm: 16px;
+  --ant-padding-content-vertical-sm: 8px;
+  --ant-margin-xxs: 4px;
+  --ant-margin-xs: 8px;
+  --ant-margin-sm: 12px;
+  --ant-margin: 16px;
+  --ant-margin-md: 20px;
+  --ant-margin-lg: 24px;
+  --ant-margin-xl: 32px;
+  --ant-margin-xxl: 48px;
+  --ant-box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-secondary: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-tertiary: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --ant-box-shadow-popover-arrow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-card: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  --ant-box-shadow-drawer-right: -6px 0 16px 0 rgba(0, 0, 0, 0.08), -3px 0 6px -4px rgba(0, 0, 0, 0.12), -9px 0 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-drawer-left: 6px 0 16px 0 rgba(0, 0, 0, 0.08), 3px 0 6px -4px rgba(0, 0, 0, 0.12), 9px 0 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-drawer-up: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-drawer-down: 0 -6px 16px 0 rgba(0, 0, 0, 0.08), 0 -3px 6px -4px rgba(0, 0, 0, 0.12), 0 -9px 28px 8px rgba(0, 0, 0, 0.05);
+  --ant-box-shadow-tabs-overflow-left: inset 10px 0 8px -8px rgba(0, 0, 0, 0.08);
+  --ant-box-shadow-tabs-overflow-right: inset -10px 0 8px -8px rgba(0, 0, 0, 0.08);
+  --ant-box-shadow-tabs-overflow-top: inset 0 10px 8px -8px rgba(0, 0, 0, 0.08);
+  --ant-box-shadow-tabs-overflow-bottom: inset 0 -10px 8px -8px rgba(0, 0, 0, 0.08);
+  --ant-color-text: var(--text-color-0);
+  --ant-color-bg-spotlight: var(--grey-color-8);
+  --ant-color-bg-elevated: var(--bg-color-1);
+  --ant-color-text-description: var(--text-color-1);
+  --ant-color-icon: var(--text-color-1);
+  --ant-color-icon-hover: var(--text-color-0);
+  --ant-color-primary: var(--brand-color-3);
+  --ant-color-primary-hover: var(--brand-color-5);
+  --ant-color-text-light-solid: var(--text-color-0);
+  --ant-color-error: var(--danger-color-0);
+  --ant-color-error-hover: var(--danger-color-1);
+}
+
+.ant-css-var.ant-input-css-var {
+  --ant-input-padding-block: 4px;
+  --ant-input-padding-block-sm: 0px;
+  --ant-input-padding-block-lg: 7px;
+  --ant-input-padding-inline: 11px;
+  --ant-input-padding-inline-sm: 7px;
+  --ant-input-padding-inline-lg: 11px;
+  --ant-input-active-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  --ant-input-error-active-shadow: 0 0 0 2px rgba(255, 38, 5, 0.06);
+  --ant-input-warning-active-shadow: 0 0 0 2px rgba(255, 215, 5, 0.1);
+  --ant-input-input-font-size: 14px;
+  --ant-input-input-font-size-lg: 16px;
+  --ant-input-input-font-size-sm: 14px;
+}
+
+.ant-css-var.ant-select-css-var {
+  --ant-select-internal_fixed_item_margin: 2px;
+  --ant-select-option-padding: 5px 12px;
+  --ant-select-option-font-size: 14px;
+  --ant-select-option-height: 32px;
+  --ant-select-single-item-height-lg: 40px;
+  --ant-select-multiple-item-height: 24px;
+  --ant-select-multiple-item-height-sm: 16px;
+  --ant-select-multiple-item-height-lg: 32px;
+  --ant-select-show-arrow-padding-inline-end: 18px;
+  --ant-select-selector-bg: transparent;
+  --ant-select-option-selected-bg: var(--grey-color-1);
+  --ant-select-option-selected-color: var(--text-color-1);
+  --ant-color-text-placeholder: var(--text-color-1);
+  --ant-color-text-quaternary: var(--text-color-1);
+}
+
+.ant-css-var.ant-btn {
+  --ant-button-default-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  --ant-button-primary-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  --ant-button-danger-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
+  --ant-button-padding-inline: 15px;
+  --ant-button-padding-inline-lg: 15px;
+  --ant-button-padding-inline-sm: 7px;
+  --ant-button-only-icon-size: 16px;
+  --ant-button-only-icon-size-sm: 14px;
+  --ant-button-only-icon-size-lg: 18px;
+  --ant-button-content-font-size: 14px;
+  --ant-button-content-font-size-sm: 14px;
+  --ant-button-content-font-size-lg: 16px;
+  --ant-button-padding-block: 4px;
+  --ant-button-padding-block-sm: 0px;
+  --ant-button-padding-block-lg: 7px;
+  --ant-button-text-hover-bg: var(--icon-hover-bg);
+}
+
+.ant-css-var.ant-tabs-css-var {
+  --ant-tabs-card-height: 40px;
+  --ant-tabs-card-padding: 8px 16px;
+  --ant-tabs-card-padding-sm: 6px 16px;
+  --ant-tabs-card-padding-lg: 8px 16px 6px;
+  --ant-tabs-title-font-size: 14px;
+  --ant-tabs-title-font-size-lg: 16px;
+  --ant-tabs-title-font-size-sm: 14px;
+  --ant-tabs-horizontal-margin: 0 0 16px 0;
+  --ant-tabs-horizontal-item-gutter: 32px;
+  --ant-tabs-horizontal-item-padding: 12px 0;
+  --ant-tabs-horizontal-item-padding-sm: 8px 0;
+  --ant-tabs-horizontal-item-padding-lg: 16px 0;
+  --ant-tabs-vertical-item-padding: 8px 24px;
+  --ant-tabs-vertical-item-margin: 16px 0 0 0;
+  --ant-tabs-card-gutter: 2px;
+}
+
+.ant-css-var.ant-modal-css-var {
+  --ant-modal-title-font-size: 16px;
+  --ant-modal-content-padding: 20px 24px;
+  --ant-modal-header-margin-bottom: 8px;
+  --ant-modal-footer-margin-top: 12px;
+  --ant-modal-confirm-icon-margin-inline-end: 12px;
+  --ant-modal-confirm-btns-margin-top: 12px;
+  --ant-modal-content-bg: var(--bg-color-0);
+  --ant-modal-header-bg: transparent;
+  --ant-modal-title-color: var(--text-color-0);
+}
+
+.ant-css-var.ant-skeleton {
+  --ant-skeleton-color: rgba(0, 0, 0, 0.06);
+  --ant-skeleton-color-gradient-end: rgba(0, 0, 0, 0.15);
+  --ant-skeleton-gradient-from-color: var(--bg-color-1);
+  --ant-skeleton-gradient-to-color: rgba(0, 0, 0, 0.15);
+  --ant-skeleton-title-height: 16px;
+  --ant-skeleton-block-radius: 4px;
+  --ant-skeleton-paragraph-margin-top: 28px;
+  --ant-skeleton-paragraph-li-height: 16px;
+}
+
+.ant-css-var.ant-tooltip {
+  --ant-color-text-light-solid: var(--grey-color-0);
+}
