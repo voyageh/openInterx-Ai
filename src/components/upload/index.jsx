@@ -26,20 +26,13 @@ export default forwardRef(function Upload(_, ref) {
 
   return (
     <Modal
-      classNames={{ content: 'upload-modal-content' }}
+      classNames={{ content: 'custom-modal upload-modal' }}
       width={'42%'}
       title="Upload Video"
+      okText="Upload"
       centered
       open={open}
       onCancel={() => setOpen(false)}
-      footer={[
-        <Button key="back" type="text" className="cancel-btn">
-          Cancel
-        </Button>,
-        <Button key="submit" type="text" className="upload-btn">
-          Upload
-        </Button>,
-      ]}
     >
       <Tabs
         activeKey={tab}
@@ -59,7 +52,7 @@ export default forwardRef(function Upload(_, ref) {
           </Dragger>
         ) : (
           <div>
-            <Input className="url-input" size='large' placeholder="Paste your url link here" prefix={<Icon name="UrlIcon" />} />
+            <Input className="url-input" size="large" placeholder="Paste your url link here" prefix={<Icon name="UrlIcon" />} />
             <span className="upload-tips">If there was an error downloading the video, please try again. Each analysis time varies from 1-10s</span>
           </div>
         )}

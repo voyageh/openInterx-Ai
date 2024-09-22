@@ -1,41 +1,19 @@
-import { createAlova } from 'alova'
-import fetchAdapter from 'alova/fetch'
-import reactHook from 'alova/react'
-import { createApis, withConfigType } from './createApis'
-import { message } from 'antd'
+import Http from '@/utils/http'
 
-export const alovaInstance = createAlova({
-  baseURL: '/api',
-  statesHook: reactHook,
-  requestAdapter: fetchAdapter(),
-  beforeRequest: (method) => {},
-  responded: {
-    onSuccess: async (response) => {
-      if (response.status >= 400) {
-        message.open({
-          type: 'error',
-          content: response.statusText,
-        })
-        return
-      }
+const http = new Http('https://apifoxmock.com/m1/5110074-4772873-default')
 
-      const json = await response.json()
-      if (json.code !== 0) {
-        message.open({
-          type: 'error',
-          content: json.message,
-        })
-      }
-      return json.data
-    },
-  },
-})
+const context = require.context('./', false, /\.js$/)
+let services = null
 
-export const $$userConfigMap = withConfigType({})
+services = context
+  .keys()
+  .filter((key) => key !== './index.js')
+  .reduce(
+    (result, key) => ({
+      ...result,
+      [key.match(/([^/]+)\.js$/)[1]]: context(key).default(http),
+    }),
+    {}
+  )
 
-/**
- * @type { Apis }
- */
-const Apis = createApis(alovaInstance, $$userConfigMap)
-
-export default Apis
+export default services

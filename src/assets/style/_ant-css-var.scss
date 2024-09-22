@@ -65,9 +65,15 @@
   --ant-box-shadow-tabs-overflow-bottom: inset 0 -10px 8px -8px rgba(0, 0, 0, 0.08);
   --ant-color-text: var(--text-color-0);
   --ant-color-bg-spotlight: var(--grey-color-8);
-  --ant-color-text-light-solid: var(--grey-color-0);
   --ant-color-bg-elevated: var(--bg-color-1);
   --ant-color-text-description: var(--text-color-1);
+  --ant-color-icon: var(--text-color-1);
+  --ant-color-icon-hover: var(--text-color-0);
+  --ant-color-primary: var(--brand-color-3);
+  --ant-color-primary-hover: var(--brand-color-5);
+  --ant-color-text-light-solid: var(--text-color-0);
+  --ant-color-error: var(--danger-color-0);
+  --ant-color-error-hover: var(--danger-color-1);
 }
 
 .ant-css-var.ant-input-css-var {
@@ -95,8 +101,11 @@
   --ant-select-multiple-item-height-sm: 16px;
   --ant-select-multiple-item-height-lg: 32px;
   --ant-select-show-arrow-padding-inline-end: 18px;
+  --ant-select-selector-bg: transparent;
   --ant-select-option-selected-bg: var(--grey-color-1);
   --ant-select-option-selected-color: var(--text-color-1);
+  --ant-color-text-placeholder: var(--text-color-1);
+  --ant-color-text-quaternary: var(--text-color-1);
 }
 
 .ant-css-var.ant-btn {
@@ -143,4 +152,22 @@
   --ant-modal-footer-margin-top: 12px;
   --ant-modal-confirm-icon-margin-inline-end: 12px;
   --ant-modal-confirm-btns-margin-top: 12px;
+  --ant-modal-content-bg: var(--bg-color-0);
+  --ant-modal-header-bg: transparent;
+  --ant-modal-title-color: var(--text-color-0);
+}
+
+.ant-css-var.ant-skeleton {
+  --ant-skeleton-color: rgba(0, 0, 0, 0.06);
+  --ant-skeleton-color-gradient-end: rgba(0, 0, 0, 0.15);
+  --ant-skeleton-gradient-from-color: var(--bg-color-1);
+  --ant-skeleton-gradient-to-color: rgba(0, 0, 0, 0.15);
+  --ant-skeleton-title-height: 16px;
+  --ant-skeleton-block-radius: 4px;
+  --ant-skeleton-paragraph-margin-top: 28px;
+  --ant-skeleton-paragraph-li-height: 16px;
+}
+
+.ant-css-var.ant-tooltip {
+  --ant-color-text-light-solid: var(--grey-color-0);
 }

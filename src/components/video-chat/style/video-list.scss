@@ -36,10 +36,6 @@
         border-radius: 0;
         background-color: transparent;
 
-        .search-icon {
-          color: var(--text-color-1);
-        }
-
         input::placeholder {
           color: var(--text-color-2);
         }
@@ -47,50 +43,27 @@
         &:hover {
           border-color: inherit;
         }
+
         &:focus,
         &:focus-within {
           border-color: inherit;
           box-shadow: none;
         }
       }
-
-      .ant-select {
-        .ant-select-clear {
-          color: var(--text-color-1);
-        }
-        &:hover .ant-select-clear {
-          color: var(--text-color-1);
-          background-color: transparent !important;
-        }
-      }
-
       .ant-select-selector {
-        color: var(--text-color-1);
         border: none;
-        border-radius: 0;
-        background-color: transparent;
-        .ant-select-selection-item {
-          color: var(--text-color-1) !important;
-        }
       }
-      .ant-select-arrow {
-        color: var(--text-color-1);
-      }
-
-      .ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
-        border-color: inherit;
-      }
+      
       .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer)
         .ant-select-selector {
         box-shadow: none;
-        border-color: inherit;
       }
     }
   }
 
   &__filter {
     margin-top: 14px;
-    margin-right: 20px;
+    padding-right: 12px;
     display: flex;
     position: relative;
 
@@ -175,28 +148,22 @@
     flex: 1;
     overflow: hidden;
     margin-top: 12px;
-    margin-right: 7px;
+    padding-right: 5px;
 
     .video-row {
       display: flex;
-      gap: 10px;
 
       .video-item {
-        flex: 1;
         margin-bottom: 14px;
-        .skeleton-cover {
-          --ant-skeleton-gradient-from-color: var(--bg-color-1);
-          width: 100%;
-          height: 144px;
-          span {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-          }
+        padding-left: 5px;
+        padding-right: 5px;
+        
+        &:first-child {
+          padding-left: 0;
         }
-        .skeleton-text {
-          --ant-skeleton-paragraph-li-height: 16px;
-          --ant-skeleton-gradient-from-color: var(--bg-color-1);
+        
+        &:last-child {
+          padding-right: 0;
         }
 
         &:hover .video-cover .cover-checkbox {
@@ -205,9 +172,13 @@
 
         .video-cover {
           height: 144px;
+          width: 100%;
           border-radius: 8px;
           position: relative;
-          background: lightgray center / cover no-repeat;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          overflow: hidden;
 
           .cover-checkbox {
             --ant-color-bg-container: var(--bg-color-0);
@@ -250,8 +221,9 @@
           font-weight: 500;
         }
 
-        .video-date {
-          font-weight: 400;
+        .ant-skeleton-avatar-square{
+          width: 100%;
+          height: 100%;
         }
       }
 
@@ -299,6 +271,17 @@
         border-color: #504494 !important;
         background: linear-gradient(274deg, #6d00b0 -20.02%, #5a71ee 110.99%), linear-gradient(to right, #5d62e7, #7227a0) !important;
       }
+    }
+  }
+}
+
+.delete-modal {
+  .ant-modal-body {
+    padding: 30px;
+    p {
+      color: var(--text-color-1);
+      font-size: var(--font-size-1);
+      font-weight: 400;
     }
   }
 }

@@ -1,12 +1,16 @@
-import { useEffect, useRef, Fragment, memo } from 'react'
+import { useEffect, useRef, memo, useMemo, Fragment } from 'react'
+import { Empty } from 'antd'
+import EmptyIcon from '@/assets/images/empty.svg'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import 'overlayscrollbars/overlayscrollbars.css'
+
 import './index.scss'
 
-const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
+const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowClass, itemContent, loader, empty }) => {
   const rootRef = useRef(null)
   const viewportRef = useRef(null)
+
   const [initialize] = useOverlayScrollbars({
     defer: true,
     options: {
@@ -16,8 +20,9 @@ const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
       },
     },
   })
+
   const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
-    count: data.length,
+    count: loading ? 10 : Math.ceil(data.length / size),
     getScrollElement: () => viewportRef.current,
     estimateSize: () => estimateSize,
   })
@@ -38,25 +43,34 @@ const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
 
   const Wrapper = wrapper || 'div'
 
-  const childrenContent = getVirtualItems().map((item) => {
+  const childContent = useMemo(() => {
     if (!itemContent) return null
-    return (
-      <Fragment key={item.key}>
-        {itemContent({
-          'data-index': item.index,
-          measureElement,
-          rowData: data[item.index],
-          style: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            transform: `translateY(${item.start}px)`,
-          },
-        })}
-      </Fragment>
-    )
-  })
+    const renderItem = loading ? loader : itemContent
+    return getVirtualItems().map((row) => (
+      <div
+        key={row.key}
+        data-index={row.index}
+        ref={measureElement}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          transform: `translateY(${row.start}px)`,
+        }}
+        className={rowClass}
+      >
+        {size === 1
+          ? renderItem(data[row.index])
+          : Array.from({ length: size }).map((_, i) => {
+              const itemData = data[size * row.index + i]
+              return loading ? <Fragment key={i}>{renderItem()}</Fragment> : itemData && <Fragment key={itemData.id}>{renderItem(itemData)}</Fragment>
+            })}
+      </div>
+    ))
+  }, [getVirtualItems(), data, size, rowClass])
+
+  const EmptyDes = empty || 'No data'
 
   return (
     <div data-overlayscrollbars-initialize="" ref={rootRef} className="virtual-list">
@@ -68,8 +82,13 @@ const VirtualList = ({ data = [], estimateSize, wrapper, itemContent }) => {
             position: 'relative',
           }}
         >
-          {childrenContent}
+          {childContent}
         </Wrapper>
+        {!loading && data.length === 0 && (
+          <div className="virtual-list__emty">
+            <Empty image={<EmptyIcon />} description={EmptyDes} />
+          </div>
+        )}
       </div>
     </div>
   )

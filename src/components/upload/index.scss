@@ -1,20 +1,4 @@
-.ant-modal-content.upload-modal-content {
-  background-color: var(--bg-color-0);
-
-  .ant-modal-close {
-    color: var(--text-color-1);
-  }
-
-  .ant-modal-header {
-    text-align: center;
-    background-color: transparent;
-
-    .ant-modal-title {
-      color: var(--text-color-0);
-      font-size: 18px;
-    }
-  }
-
+.upload-modal {
   .ant-modal-body {
     .ant-tabs-tab {
       color: var(--text-color-1);
@@ -63,23 +47,6 @@
       input::placeholder {
         color: var(--text-color-3);
       }
-    }
-  }
-
-  .ant-modal-footer {
-    display: flex;
-
-    button {
-      flex: 1;
-    }
-
-    .cancel-btn {
-      color: var(--text-color-1);
-      border: 1px solid var(--bg-color-2);
-    }
-    .upload-btn {
-      color: var(--bg-color-0);
-      background-color: var(--text-color-1);
     }
   }
 }

@@ -77,3 +77,34 @@ html[data-theme='dark']::view-transition-old(root) {
     font-size: 16px;
   }
 }
+
+.custom-modal {
+  .ant-modal-header {
+    text-align: center;
+
+    .ant-modal-title {
+      font-size: 18px;
+    }
+  }
+  .ant-modal-footer {
+    display: flex;
+
+    button {
+      flex: 1;
+    }
+
+    .ant-btn-default {
+      --ant-button-default-bg: transparent;
+      --ant-button-default-hover-bg: var(--grey-color-4);
+      --ant-button-default-hover-border-color: transparent;
+      --ant-button-default-hover-color: var(--text-color-1);
+      --ant-button-default-color: var(--text-color-1);
+      --ant-button-default-border-color: var(--bg-color-2);
+    }
+
+    .ant-btn-primary {
+      --ant-button-primary-color: var(--text-color-0);
+      --ant-color-text-light-solid: var(--text-color-1);
+    }
+  }
+}
