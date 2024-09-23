@@ -2,14 +2,21 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import Logo from '@/assets/images/login/logo.svg'
 import Google from '@/assets/images/login/google.svg'
+import Apis from '@/api'
 import './index.scss'
 
 export default function Login() {
   const navigate = useNavigate()
+  
   const login = useGoogleLogin({
     onSuccess: (respnse) => {
-      // respnse.access_token
-      // navigate('/', { replace: true })
+      Apis.user
+        .login({
+          token: respnse.access_token,
+        })
+        .then((r) => {
+          navigate('/', { replace: true })
+        })
     },
   })
 

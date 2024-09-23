@@ -3,8 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ConfigProvider } from 'antd'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { RouterProvider } from 'react-router-dom'
-import '@/utils/flexible'
 import router from '@/routes'
+import '@/utils/flexible'
+
+import 'overlayscrollbars/overlayscrollbars.css'
 import './index.scss'
 
 // listenerSize()

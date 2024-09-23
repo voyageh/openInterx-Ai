@@ -34,7 +34,7 @@ const store = (set, get) => ({
           clipPath: isDark ? [...clipPath].reverse() : clipPath,
         },
         {
-          duration: 500,
+          duration: 300,
           pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
         }
       )

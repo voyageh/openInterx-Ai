@@ -34,7 +34,10 @@ import UpIcon from '@/assets/images/chat/up.svg'
 import NewChatIcon from '@/assets/images/chat/new-chat.svg'
 import SendIcon from '@/assets/images/chat/send.svg'
 import Attachment from '@/assets/images/chat/attachment.svg'
+
+// upload
 import UrlIcon from '@/assets/images/upload/url.svg'
+import FileIcon from '@/assets/images/upload/file.svg'
 
 import './index.scss'
 
@@ -74,7 +77,10 @@ const icons = {
   NewChatIcon,
   SendIcon,
   Attachment,
+  
+  // upload
   UrlIcon,
+  FileIcon
 }
 
 export const Icon = forwardRef(({ name, className, ...props }, ref) => {

@@ -3,7 +3,6 @@ import { Empty } from 'antd'
 import EmptyIcon from '@/assets/images/empty.svg'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import 'overlayscrollbars/overlayscrollbars.css'
 
 import './index.scss'
 
