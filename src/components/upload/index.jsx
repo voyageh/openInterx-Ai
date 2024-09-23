@@ -82,9 +82,9 @@ export default forwardRef(function Upload(_, ref) {
           <Dragger {...uploadProps}>
             {fileList.length === 0 ? (
               <div className="upload-tips-warpper">
-                <div className="upload-text">Drag the video file here or click to browse the local file</div>
-                <div className="upload-tips">Ultrices odio tempus adipiscing ornare euismod posuere vitae etiam tempor.</div>
-                <div className="upload-tips">Please upload no more than 2 gigabytes of video</div>
+                <div className="upload-tips">Drag the video file here or click to browse the local file</div>
+                <div className="upload-tips-sub">Ultrices odio tempus adipiscing ornare euismod posuere vitae etiam tempor.</div>
+                <div className="upload-tips-sub">Please upload no more than 2 gigabytes of video</div>
               </div>
             ) : (
               <OverlayScrollbarsComponent className="preview-list-warpper" defer>
