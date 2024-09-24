@@ -7,7 +7,7 @@
 
   .checkbox-video {
     color: var(--text-color-1);
-    font-size: var(--font-size-0);
+    font-size: var(--font-size-1);
     --ant-color-primary-hover: var(--brand-color-6);
     --ant-color-primary: var(--brand-color-6);
     --ant-color-bg-container: transparent;
@@ -65,33 +65,61 @@
   }
 
   &__filter {
-    margin-top: 14px;
+    height: 40px;
+    margin-top: 6px;
     padding-right: 12px;
     display: flex;
+    align-items: center;
     position: relative;
 
     .icon-left,
     .icon-right {
-      width: 40px;
-      color: var(--text-color-1);
-      background-color: var(--bg-color-0);
       position: absolute;
-      top: 0;
-      bottom: 0;
+      height: 100%;
       z-index: 99;
-      cursor: pointer;
-      text-align: left;
+      display: flex;
+      background: transparent;
 
       &.hide {
         display: none;
       }
+
+      & > div {
+        height: 100%;
+        background-color: var(--bg-color-0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        border-radius: 50%;
+      }
     }
+
+    .icon-left {
+      &::after {
+        content: '';
+        height: 100%;
+        width: 50px;
+        background: linear-gradient(to right,var(--bg-color-0) 20%,rgba(255,255,255,0) 80%)
+      }
+    }
+
     .icon-right {
-      right: 0;
+      right: 8px;
       text-align: right;
+
+      &::before {
+        content: '';
+        height: 100%;
+        width: 50px;
+        background: linear-gradient(to left, var(--bg-color-0) 20%, rgba(255, 255, 255, 0) 80%);
+      }
     }
 
     .ant-tag-checkable {
+      font-size: var(--font-size-1);
+      font-weight: 500;
       color: var(--text-color-1);
       background-color: var(--grey-color-0);
       border-color: transparent;
@@ -111,12 +139,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 6px;
     padding-right: 12px;
 
     .btn {
       color: var(--text-color-1);
-      font-size: var(--font-size-0);
+      font-size: var(--font-size-1);
       font-weight: 400;
 
       .icon-wrapper {
@@ -211,11 +238,12 @@
         }
 
         .video-name {
-          height: 40px;
           color: var(--text-color-0);
           font-size: var(--font-size-1);
+          line-height: 1.2;
           word-break: break-all;
           margin: 6px 0;
+          font-weight: 500;
         }
 
         .video-date {

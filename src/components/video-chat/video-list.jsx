@@ -85,25 +85,6 @@ function reducer(state, action) {
   }
 }
 
-const VideoItem = memo(({ item, span, onDragStart, onDragEnd, listType }) => (
-  <Col className="video-item" span={span} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
-    <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
-      <div className="video-cover__mask text">{item.duration}</div>
-      <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
-    </div>
-    <div className="video-name ellipsis-2-lines">{item.name}</div>
-    {listType === 'list' && <div className="text">{item.duration}</div>}
-    <div className="video-date">{item.date}</div>
-  </Col>
-))
-
-const VideoSkeleton = ({ span }) => (
-  <Col className="video-item" span={span}>
-    <Skeleton.Avatar className="video-cover" active shape="square" />
-    <Skeleton active title={false} />
-  </Col>
-)
-
 const VideoList = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const uploadRef = useRef(null)
@@ -250,13 +231,21 @@ const VideoList = (props) => {
               </Tag.CheckableTag>
             </SwiperSlide>
           ))}
-          <div className="icon-left">
-            <Icon name="LeftIcon" />
-          </div>
-          <div className="icon-right">
-            <Icon name="RightIcon" />
-          </div>
         </Swiper>
+        <div className="icon-left">
+          <div>
+            <Tooltip title="Previous" placement="bottom">
+              <Button icon={<Icon name="LeftIcon" />} type="text" />
+            </Tooltip>
+          </div>
+        </div>
+        <div className="icon-right">
+          <div>
+            <Tooltip title="Next" placement="bottom">
+              <Button icon={<Icon name="RightIcon" />} type="text" />
+            </Tooltip>
+          </div>
+        </div>
       </div>
       <div className="video-list__sort">
         <Checkbox className="checkbox-video" indeterminate={indeterminate} onChange={onSelectAll}>
