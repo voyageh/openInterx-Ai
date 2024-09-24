@@ -3,6 +3,7 @@ export default function (http) {
     queryVideoList: (params) => {
       return http.request('/api/videos', {
         params,
+        baseURL: 'https://apifoxmock.com/m1/5110074-4772873-default',
       })
     },
     upload: (data) => {

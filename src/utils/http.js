@@ -29,31 +29,28 @@ export default class Http {
 
   handleResponse(response) {
     const data = response.data
-    if (data.code !== 200) {
+    if (data instanceof Blob) {
+      return response
+    } else if (data.code === '0000') {
+      return data.data
+    } else {
       message.open({
         type: 'error',
-        content: data.message,
+        content: data.message || 'Server Error',
       })
-      return
+      return Promise.reject(data)
     }
-    return response.data.data // 直接返回数据
   }
 
   handleError(error) {
-    let errorCode, errorMsg
     if (error.response) {
-      errorCode = error.response.status // 获取错误代码
-      errorMsg = error.message
-    } else if (error.request) {
-      error.code = error.request.status
-      errorMsg = error.message
-    } else {
-      errorMsg = `错误信息: ${error.message}`
+      if (error.response.status === 401) {
+        window.location.href = '/login'
+      }
     }
-
     message.open({
       type: 'error',
-      content: errorMsg,
+      content: error?.response?.data?.message || 'Server Error',
     })
 
     return Promise.reject(error.response ? error.response.data : error)
@@ -71,26 +68,21 @@ export default class Http {
       ...rest
     } = {}
   ) {
-    try {
-      const requestOptions = {
-        url,
-        timeout,
-        responseType,
-        method: method.toUpperCase(),
-        headers: {
-          'content-type': contentType,
-          'Accept-Language': acceptLanguage,
-          ...headers,
-        },
-        ...rest,
-      }
-      if (rest.baseURL) {
-        requestOptions.baseURL = rest.baseURL
-      }
-      const res = await this.instance.request(requestOptions)
-      return res
-    } catch (e) {
-      return e
+    const requestOptions = {
+      url,
+      timeout,
+      responseType,
+      method: method.toUpperCase(),
+      headers: {
+        'content-type': contentType,
+        'Accept-Language': acceptLanguage,
+        ...headers,
+      },
+      ...rest,
     }
+    if (rest.baseURL) {
+      requestOptions.baseURL = rest.baseURL
+    }
+    return this.instance.request(requestOptions)
   }
 }

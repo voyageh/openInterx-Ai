@@ -102,17 +102,15 @@
       }
     }
   }
-
-  @include break-point('sm-and-down') {
-    &__chat {
-      width: 100% !important;
-    }
-  }
 }
 
 @include break-point('sm-and-down') {
   .video-chat {
     padding: 10px;
+
+    &__chat {
+      width: 100% !important;
+    }
   }
 }
 

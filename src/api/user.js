@@ -5,6 +5,9 @@ export default function (http) {
         params,
       })
     },
+    getUser: () => {
+      return http.request('/auth/customer/getCustomerInfo')
+    },
     loginout: (params) => {
       return http.request('/auth/customer/loginOut', {
         params,

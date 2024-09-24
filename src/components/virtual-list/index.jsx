@@ -1,4 +1,5 @@
 import { useEffect, useRef, memo, useMemo, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Empty } from 'antd'
 import EmptyIcon from '@/assets/images/empty.svg'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
@@ -6,7 +7,8 @@ import { useVirtualizer } from '@tanstack/react-virtual'
 
 import './index.scss'
 
-const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowClass, itemContent, loader, empty }) => {
+const VirtualList = (props) => {
+  const { data = [], size = 1, loading, estimateSize, wrapper, rowClass, itemContent, loader, empty } = props
   const rootRef = useRef(null)
   const viewportRef = useRef(null)
 
@@ -18,12 +20,6 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
         autoHideDelay: 200,
       },
     },
-  })
-
-  const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
-    count: loading ? 10 : Math.ceil(data.length / size),
-    getScrollElement: () => viewportRef.current,
-    estimateSize: () => estimateSize,
   })
 
   useEffect(() => {
@@ -40,9 +36,16 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
     }
   }, [initialize])
 
+  const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
+    count: loading ? 10 : Math.ceil(data.length / size),
+    getScrollElement: () => viewportRef.current,
+    estimateSize: () => 220,
+    overscan: 2,
+  })
+
   const Wrapper = wrapper || 'div'
 
-  const childContent = useMemo(() => {
+  const ChildContent = () => {
     if (!itemContent) return null
     const renderItem = loading ? loader : itemContent
     return getVirtualItems().map((row) => (
@@ -67,7 +70,7 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
             })}
       </div>
     ))
-  }, [getVirtualItems(), data, size, rowClass])
+  }
 
   const EmptyDes = empty || 'No data'
 
@@ -81,7 +84,7 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
             position: 'relative',
           }}
         >
-          {childContent}
+          <ChildContent />
         </Wrapper>
         {!loading && data.length === 0 && (
           <div className="virtual-list__emty">
@@ -92,4 +95,17 @@ const VirtualList = ({ data = [], size = 1, loading, estimateSize, wrapper, rowC
     </div>
   )
 }
+
+VirtualList.prototype = {
+  data: PropTypes.array,
+  size: PropTypes.number,
+  loading: PropTypes.bool,
+  estimateSize: PropTypes.number,
+  wrapper: PropTypes.elementType,
+  rowClass: PropTypes.string,
+  itemContent: PropTypes.func,
+  loader: PropTypes.element,
+  empty: PropTypes.string,
+}
+
 export default memo(VirtualList)

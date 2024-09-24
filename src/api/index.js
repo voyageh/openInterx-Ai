@@ -1,6 +1,6 @@
 import Http from '@/utils/http'
 
-const http = new Http('https://apifoxmock.com/m1/5110074-4772873-default')
+const http = new Http('/api')
 
 const context = require.context('./', false, /\.js$/)
 let services = null

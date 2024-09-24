@@ -1,4 +1,4 @@
-import { useRef, useReducer, useCallback } from 'react'
+import { useRef, useReducer, useCallback, useEffect, useState, memo, useMemo } from 'react'
 import { Input, Select, Button, AutoComplete, Tag, Checkbox, Modal, Tooltip, Skeleton, Col } from 'antd'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
@@ -76,13 +76,33 @@ function reducer(state, action) {
     case 'setListType':
       let listType = state.listType === '' ? 'list' : ''
       const size = calcSize(state.width, listType)
-      return { ...state, listType, size }
+      const span = 24 / size
+      return { ...state, listType, size, span }
     case 'setShowDel':
       return { ...state, showDel: action.payload }
     default:
       return state
   }
 }
+
+const VideoItem = memo(({ item, span, onDragStart, onDragEnd, listType }) => (
+  <Col className="video-item" span={span} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
+    <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+      <div className="video-cover__mask text">{item.duration}</div>
+      <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
+    </div>
+    <div className="video-name ellipsis-2-lines">{item.name}</div>
+    {listType === 'list' && <div className="text">{item.duration}</div>}
+    <div className="video-date">{item.date}</div>
+  </Col>
+))
+
+const VideoSkeleton = ({ span }) => (
+  <Col className="video-item" span={span}>
+    <Skeleton.Avatar className="video-cover" active shape="square" />
+    <Skeleton active title={false} />
+  </Col>
+)
 
 const VideoList = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -138,6 +158,8 @@ const VideoList = (props) => {
   })
 
   const onResize = useCallback(({ width }) => {
+    console.log(width)
+
     const size = calcSize(width, state.listType)
     const span = 24 / size
     dispatch({ type: 'setWidth', payload: { width, size, span } })
@@ -149,6 +171,7 @@ const VideoList = (props) => {
   })
 
   const setDrag = useUniversalStore((state) => state.setDrag)
+
   const onDragStart = (e) => {
     const dragPreview = document.createElement('div')
     dragPreview.classList.add('drag-preview')

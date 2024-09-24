@@ -15,7 +15,7 @@ const msg = [
     isMine: false,
   },
   {
-    text: 'Find a video about footballFind a video about footballFind a video about footballFind a video about footballFind a video about footballFind a video about football',
+    text: 'Give me a link to the football video',
     isMine: true,
   },
 ]

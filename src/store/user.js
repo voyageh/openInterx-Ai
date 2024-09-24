@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist, devtools } from 'zustand/middleware'
+import Apis from '@/api'
 
 const store = (set, get) => ({
   theme: 'light',
@@ -43,6 +44,12 @@ const store = (set, get) => ({
 
   changeWidth: (width) => {
     set({ width })
+  },
+
+  login: async (token) => {
+    await Apis.user.login({ token })
+    const user = await Apis.user.getUser()
+    set({ user })
   },
 })
 
