@@ -108,3 +108,11 @@ html[data-theme='dark']::view-transition-old(root) {
     }
   }
 }
+
+.ant-spin {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

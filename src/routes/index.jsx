@@ -10,6 +10,7 @@ const router = createBrowserRouter([
     path: '',
     element: <Root />,
     errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    errorElement: <ErrorPage />,
   },
 ])
+
+router.subscribe((r) => {
+  console.log('router change', r)
+})
 
 export default router

@@ -1,13 +1,21 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Tooltip } from 'antd'
 import Icon from '@/components/icon'
 import { useUserStore } from '@/store/user'
 
 import './root.scss'
+import { useEffect } from 'react'
 
 export default function Root() {
   const location = useLocation()
-  const { user, theme, changeTheme } = useUserStore()  
+  const navigate = useNavigate()
+  const { user, theme, changeTheme, token } = useUserStore()
+  
+  useEffect(() => {
+    if (!token) {
+      navigate('/login', { replace: true })
+    }
+  }, [])
 
   return (
     <div className="openinterx-ai">
@@ -32,7 +40,7 @@ export default function Root() {
             <Icon name={theme} className="theme-icon" onClick={changeTheme} />
           </Tooltip>
           <Tooltip title="User settings" placement="right">
-            <img src={user.avatar} alt="avatar" />
+            <img src={user.imageUrl} alt="avatar" />
           </Tooltip>
         </div>
       </div>

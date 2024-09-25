@@ -18,7 +18,7 @@ const CheckboxGroup = Checkbox.Group
 
 const tagsData = [
   'All',
-  'Football',
+  'Gaming',
   'Baseball',
   'Swimming',
   'Badminton',
@@ -85,6 +85,18 @@ function reducer(state, action) {
   }
 }
 
+const VideoItem = (item) => (
+  <Col className="video-item" span={state.span} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
+    <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+      <div className="video-cover__mask text">{item.duration}</div>
+      <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
+    </div>
+    <div className="video-name ellipsis-2-lines">{item.name}</div>
+    {state.listType === 'list' && <div className="text">{item.duration}</div>}
+    <div className="video-date">{item.date}</div>
+  </Col>
+)
+
 const VideoList = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const uploadRef = useRef(null)
@@ -139,8 +151,6 @@ const VideoList = (props) => {
   })
 
   const onResize = useCallback(({ width }) => {
-    console.log(width)
-
     const size = calcSize(width, state.listType)
     const span = 24 / size
     dispatch({ type: 'setWidth', payload: { width, size, span } })
@@ -187,6 +197,21 @@ const VideoList = (props) => {
     dispatch({ type: 'setShowDel', payload: false })
   }
 
+  const renderItem = useCallback(
+    (item) => (
+      <Col className="video-item" span={state.span} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
+        <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
+          <div className="video-cover__mask text">{item.duration}</div>
+          <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
+        </div>
+        <div className="video-name ellipsis-2-lines">{item.name}</div>
+        {state.listType === 'list' && <div className="text">{item.duration}</div>}
+        <div className="video-date">{item.date}</div>
+      </Col>
+    ),
+    [state.span, state.checkedList]
+  )
+
   return (
     <div className="video-list">
       <div className="video-list__search">
@@ -200,10 +225,10 @@ const VideoList = (props) => {
             onSelect={onSelect}
             allowClear={{ clearIcon: <Icon name="CloseIcon" /> }}
           >
-            <Input placeholder="Search key clips" prefix={<Icon name="SearchIcon" />} />
+            <Input placeholder="Search key clips" prefix={<Icon name="SearchIcon" />} size='large'/>
           </AutoComplete>
           {!state.value && (
-            <Select defaultValue="1">
+            <Select defaultValue="1" size='large'>
               <Select.Option value="1">KeyClips</Select.Option>
               <Select.Option value="2">Global</Select.Option>
             </Select>
@@ -275,17 +300,7 @@ const VideoList = (props) => {
               {children}
             </CheckboxGroup>
           )}
-          itemContent={(item) => (
-            <Col className="video-item" span={state.span} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
-              <div className="video-cover" style={{ backgroundImage: `url(${item.cover})` }}>
-                <div className="video-cover__mask text">{item.duration}</div>
-                <Checkbox className="checkbox-video cover-checkbox" value={item.id} />
-              </div>
-              <div className="video-name ellipsis-2-lines">{item.name}</div>
-              {state.listType === 'list' && <div className="text">{item.duration}</div>}
-              <div className="video-date">{item.date}</div>
-            </Col>
-          )}
+          itemContent={renderItem}
           loader={() => (
             <Col className="video-item" span={state.span}>
               <Skeleton.Avatar className="video-cover" active shape="square" />

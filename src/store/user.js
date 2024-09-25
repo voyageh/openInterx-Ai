@@ -5,6 +5,7 @@ import Apis from '@/api'
 const store = (set, get) => ({
   theme: 'light',
   width: '50%',
+  token: '',
   user: {
     avatar: 'https://lh3.googleusercontent.com/a/ACg8ocIECKAcott0kv2IWin_pMNkSgzvMkJs784gqjj1BWaD2qGxjPE=s96-c',
   },
@@ -46,9 +47,12 @@ const store = (set, get) => ({
     set({ width })
   },
 
-  login: async (token) => {
-    await Apis.user.login({ token })
+  login: async (access_token) => {
+    const { token } = await Apis.user.login({ token: access_token })
+    set({ token })
     const user = await Apis.user.getUser()
+    console.log('user', user)
+
     set({ user })
   },
 })

@@ -10,11 +10,11 @@ export default defineConfig({
   plugins: [
     pluginReact(),
     pluginSass({
-      sassLoaderOptions:{
+      sassLoaderOptions: {
         additionalData: `
          @import '@/assets/style/mixins/mixins.scss';
-        `
-      }
+        `,
+      },
     }),
     pluginSvgr({
       svgrOptions: {

@@ -1,7 +1,5 @@
 import { useLoaderData } from 'react-router-dom'
 import VideoChat from '@/components/video-chat'
-import { useEffect, useState } from 'react'
-
 export const loader = async ({ request }) => {
   const url = new URL(request.url)
   const q = url.searchParams.get('q') || ''
@@ -12,6 +10,9 @@ export const loader = async ({ request }) => {
 }
 
 export default function MyVideo() {
-  const [searchParams, setSearchParams] = useState({})
+  const start = Date.now()
+  while (Date.now() - start < 2000) {
+    // 这里是阻塞的空循环
+  }
   return <VideoChat />
 }

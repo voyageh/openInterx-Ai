@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { message } from 'antd'
+import { useUserStore } from '@/store/user'
 
 export default class Http {
   constructor(baseURL, options = {}) {
@@ -15,9 +16,9 @@ export default class Http {
   }
 
   handleRequest(config) {
-    const accessToken = ''
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`
+    const { token } = useUserStore.getState()
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
     }
 
     if (typeof this.options.beforeRequest === 'function') {

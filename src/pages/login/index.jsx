@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import Logo from '@/assets/images/login/logo.svg'
 import Google from '@/assets/images/login/google.svg'
+import { useUserStore } from '@/store/user'
+
 import './index.scss'
 
 export default function Login() {

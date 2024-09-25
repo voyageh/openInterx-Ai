@@ -39,8 +39,7 @@ const VirtualList = (props) => {
   const { getVirtualItems, getTotalSize, measureElement } = useVirtualizer({
     count: loading ? 10 : Math.ceil(data.length / size),
     getScrollElement: () => viewportRef.current,
-    estimateSize: () => 220,
-    overscan: 2,
+    estimateSize: () => estimateSize,
   })
 
   const Wrapper = wrapper || 'div'
@@ -84,7 +83,7 @@ const VirtualList = (props) => {
             position: 'relative',
           }}
         >
-          <ChildContent />
+          {ChildContent()}
         </Wrapper>
         {!loading && data.length === 0 && (
           <div className="virtual-list__emty">
