@@ -11,11 +11,11 @@ export default function Root() {
   const navigate = useNavigate()
   const { user, theme, changeTheme, token } = useUserStore()
   
-  useEffect(() => {
-    if (!token) {
-      navigate('/login', { replace: true })
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigate('/login', { replace: true })
+  //   }
+  // }, [])
 
   return (
     <div className="openinterx-ai">

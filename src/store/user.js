@@ -27,19 +27,19 @@ const store = (set, get) => ({
       const x = e.clientX
       const y = e.clientY
       //计算按钮到最远点的距离用作裁剪圆形的半径
-      const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
-      const isDark = theme === 'dark'
+      // const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+      // const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
+      // const isDark = theme === 'dark'
       //开始动画
-      document.documentElement.animate(
-        {
-          clipPath: isDark ? [...clipPath].reverse() : clipPath,
-        },
-        {
-          duration: 300,
-          pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
-        }
-      )
+      // document.documentElement.animate(
+      //   {
+      //     clipPath: isDark ? [...clipPath].reverse() : clipPath,
+      //   },
+      //   {
+      //     duration: 300,
+      //     pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
+      //   }
+      // )
     })
   },
 

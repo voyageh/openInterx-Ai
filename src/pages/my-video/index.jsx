@@ -10,9 +10,9 @@ export const loader = async ({ request }) => {
 }
 
 export default function MyVideo() {
-  const start = Date.now()
-  while (Date.now() - start < 2000) {
-    // 这里是阻塞的空循环
-  }
+  // const start = Date.now()
+  // while (Date.now() - start < 2000) {
+  //   // 这里是阻塞的空循环
+  // }
   return <VideoChat />
 }
